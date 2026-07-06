@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1014" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)">
   {%- seo -%}
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   {%- feed_meta -%}
 </head>
 <body>
+  <a class="skip" href="#main">본문으로 건너뛰기</a>
   <header class="site"><div class="wrap"><div class="row">
     <a class="mark" href="{{ '/' | relative_url }}">SASO<b>·</b>log</a>
     <nav class="top">
@@ -17,7 +20,7 @@
     </nav>
   </div></div></header>
 
-  <main>{{ content }}</main>
+  <main id="main">{{ content }}</main>
 
   <footer class="site"><div class="wrap"><div class="row">
     <span>© 2026 CHPARK · Solo maker</span>
