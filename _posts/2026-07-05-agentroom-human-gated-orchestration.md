@@ -55,7 +55,7 @@ tags: [claude-code, agents, agentroom, build-in-public]
 
 ## English version
 
-I build everything solo: a word game for a Korean super-app, a local-LLM personal agent, and all the tooling that keeps a one-person operation alive.
+I build everything solo: a local-LLM personal agent, and all the tooling that keeps a one-person operation alive.
 
 For a while, I ran my AI agent "team" by hand. One Claude Code session played the director, another the developer, another the reviewer — and I was the messenger between them, copying results and plans out of one session and pasting them into the next, relaying instructions all day. The role separation genuinely improved quality. It also turned me into a carrier pigeon.
 
