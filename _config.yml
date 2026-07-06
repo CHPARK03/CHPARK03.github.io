@@ -4,6 +4,7 @@ url: "https://chpark03.github.io"
 baseurl: ""
 author: CHPARK03
 lang: ko
+timezone: Asia/Seoul
 
 plugins:
   - jekyll-feed
