@@ -12,8 +12,8 @@ permalink: /about/
 
 | 프로젝트 | 소개 |
 |---|---|
-| [AgentRoom](https://github.com/CHPARK03/agentroom) | 사람이 게이트를 쥐는 Claude Code 멀티에이전트 오케스트레이션 — planner/dev/qa 핑퐁 + 승인 게이트 (MIT 오픈소스) |
-| [뭉치뭉치](https://moongchi-game.vercel.app) | 토스 앱인토스에 올리는 물리 기반 머지 퍼즐 게임 (수박게임 스타일) |
+| [AgentRoom](https://github.com/CHPARK03/agentroom) | 사람이 게이트를 쥐는 Claude Code 멀티에이전트 오케스트레이션 — planner/dev/qa 핑퐁 + 필요할 때만 붙는 researcher + 승인 게이트 (MIT 오픈소스) |
+| [뭉치뭉치](https://moongchi-game.vercel.app) | 수박게임 스타일의 물리 기반 머지 퍼즐 캐주얼 게임 (웹) |
 | 사소 | 내 컴퓨터에서만 도는 로컬 LLM 개인 에이전트 (제작 중) |
 
 ---
@@ -28,8 +28,8 @@ I write here to share what I build and what breaks along the way. Posts are writ
 
 | Project | What it is |
 |---|---|
-| [AgentRoom](https://github.com/CHPARK03/agentroom) | Human-gated multi-agent orchestration for Claude Code — planner/dev/qa ping-pong with approval gates (MIT, open source) |
-| [MoongchiMoongchi](https://moongchi-game.vercel.app) | A physics-based merge puzzle game (Suika-style) for Apps in Toss, a Korean super-app platform |
+| [AgentRoom](https://github.com/CHPARK03/agentroom) | Human-gated multi-agent orchestration for Claude Code — planner/dev/qa ping-pong plus an on-demand researcher, with approval gates (MIT, open source) |
+| [MoongchiMoongchi](https://moongchi-game.vercel.app) | A physics-based merge puzzle game (Suika-style), playable on the web |
 | Saso | A local-LLM personal agent that runs entirely on my own machine (work in progress) |
 
 ## Contact
