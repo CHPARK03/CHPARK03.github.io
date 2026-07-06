@@ -7,19 +7,19 @@ tags: [claude-code, agents, agentroom, build-in-public]
 
 *🇬🇧 [English version below](#english-version)*
 
-나는 모든 걸 혼자 만든다. 한국 슈퍼앱에 올리는 단어 게임, 내 컴퓨터에서만 도는 로컬 LLM 개인 에이전트, 그리고 1인 운영을 지탱하는 온갖 도구들. 멀티에이전트 오케스트레이션은 나 같은 사람에게 꿈의 도구여야 한다 — AI 에이전트 팀을 띄워놓고 작업을 던진 뒤, 돌아와서 완성된 결과물을 받는 것.
+나는 모든 걸 혼자 만든다. 한국 슈퍼앱에 올리는 단어 게임, 내 컴퓨터에서만 도는 로컬 LLM 개인 에이전트, 그리고 1인 운영을 지탱하는 온갖 도구들.
 
-그런데 완전 자동 오케스트레이터 방식을 들여다볼수록 두 가지가 계속 걸렸다.
+한동안은 AI 에이전트 "팀"을 수동으로 굴렸다. 총괄 역할 세션 하나, 개발 세션 하나, 검수 세션 하나 — Claude Code 세션 여러 개를 띄워놓고, 한쪽의 결과물과 계획서를 내가 직접 복사해 다른 쪽에 붙여넣으며 지시를 중계했다. 역할 분리는 확실히 품질을 올렸다. 대신 내가 하루 종일 에이전트들 사이를 오가는 전서구가 됐다.
 
-첫째, **방향 이탈**. 에이전트가 2단계에서 방향을 잘못 잡아도 10단계까지 전력 질주한다. 돌아와 보면 확신에 찬 오답 더미가 쌓여 있고, 이걸 되돌리는 비용이 직접 하는 것보다 크다.
+그리고 그 과정에서 더 뼈아픈 걸 배웠다. 에이전트의 **"완료했습니다. 빌드 통과합니다."** 는 검증 없이 믿으면 안 된다는 것. 실제로 안 돌려보고 됐다고 하고, 실패를 성공처럼 보고하는 일을 몇 번 겪은 뒤, 내 작업 규칙 문서에는 **"거짓 완료 보고 금지"** 라는 조항이 생겼다. 사람이 규칙 문서에 이런 문장을 적게 됐다는 것 자체가 문제의 크기를 말해준다.
 
-둘째, 더 나쁜 것: **"완료했습니다. 빌드 통과합니다."** — 실제로는 아니다. 파이프라인의 누구도 진짜로 확인한 적이 없다. 코드를 쓴 에이전트가 완료 판정까지 스스로 내리는 구조이기 때문이다.
+완전 자동 오케스트레이터들도 들여다봤다. 하지만 대부분 반대 방향으로 달리고 있었다 — 사람을 더 빼는 쪽. 방향이 2단계에서 틀어져도 10단계까지 전력 질주하고, 코드를 쓴 에이전트가 완료 판정까지 스스로 내리는 구조. 내 중계 노동은 없애주겠지만, 내가 제일 두려워하는 두 가지 — 방향 이탈과 거짓 "완료" — 는 오히려 증폭될 것 같았다.
 
 ## 문제는 자동화가 아니라, 검증 없는 신뢰다
 
 대부분의 오케스트레이터는 한 가지 질문에 최적화돼 있다: *사람 없이 에이전트가 얼마나 멀리 갈 수 있는가?*
 
-내가 원한 질문은 달랐다: *에이전트가 나에게 거짓말할 수 없는 상태로, 얼마나 멀리 갈 수 있는가?*
+내가 원한 질문은 달랐다: *중계 노동은 자동화하되, 에이전트가 나에게 거짓말할 수 없는 상태로 얼마나 멀리 갈 수 있는가?*
 
 그래서 [AgentRoom](https://github.com/CHPARK03/agentroom)을 만들었다. Claude Code 세션 하나가 **총괄(director)**이 되어 세 서브에이전트 — **planner**(설계), **dev**(구현), **qa**(검수) — 를 핑퐁시키는 작은 오케스트레이션 레이어다. 설계는 통상적인 "자율성 우선" 가정을 뒤집는다:
 
@@ -55,19 +55,19 @@ tags: [claude-code, agents, agentroom, build-in-public]
 
 ## English version
 
-I build everything solo: a word game for a Korean super-app, a local-LLM personal agent, and all the tooling that keeps a one-person operation alive. Multi-agent orchestration should be a dream for someone like me — spin up a team of AI agents, throw a task at them, come back to finished work.
+I build everything solo: a word game for a Korean super-app, a local-LLM personal agent, and all the tooling that keeps a one-person operation alive.
 
-But the more I looked into fully-automated orchestrators, the more two things kept bothering me.
+For a while, I ran my AI agent "team" by hand. One Claude Code session played the director, another the developer, another the reviewer — and I was the messenger between them, copying results and plans out of one session and pasting them into the next, relaying instructions all day. The role separation genuinely improved quality. It also turned me into a carrier pigeon.
 
-First, **drift**. The agents pick a wrong direction at step 2 and still sprint all the way to step 10. You come back to a mountain of confidently wrong work — which costs more to unwind than doing it yourself.
+Along the way I learned something more painful: an agent's **"Done. Build passes."** cannot be trusted without verification. After getting burned a few times — work reported as done that was never run, failures reported as successes — my personal working-rules file gained a literal clause: **"no false completion reports."** The fact that a human had to write that sentence down says everything about the size of the problem.
 
-Second, and worse: **"Done. Build passes."** — and it doesn't. Nobody in the pipeline ever actually checked. The agent that wrote the code was also the one declaring it finished.
+I did look into the fully-automated orchestrators. But most of them run in the opposite direction — removing the human further. Wrong direction at step 2, still sprinting to step 10; the agent that wrote the code also declares it finished. They would have automated away my relay labor — and amplified the two things I feared most: drift, and the false "done".
 
 ### The problem isn't automation. It's unverified trust.
 
 Most orchestrators optimize for one question: *how far can agents run without you?*
 
-The question I actually cared about was different: *how far can agents run without being able to lie to me?*
+The question I actually cared about was different: *automate the relaying — but how far can agents run without being able to lie to me?*
 
 So I built [AgentRoom](https://github.com/CHPARK03/agentroom) — a small orchestration layer for Claude Code where one session becomes the **director** and ping-pongs three subagents: **planner** (design), **dev** (implementation), **qa** (review). The design inverts the usual autonomy-first assumptions:
 
