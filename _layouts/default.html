@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- feed_meta -%}
+</head>
+<body>
+  <header class="site"><div class="wrap"><div class="row">
+    <a class="mark" href="{{ '/' | relative_url }}">SASO<b>·</b>log</a>
+    <nav class="top">
+      <a href="{{ '/#work' | relative_url }}">대표작</a>
+      <a href="{{ '/#log' | relative_url }}">Dev Log</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+    </nav>
+  </div></div></header>
+
+  <main>{{ content }}</main>
+
+  <footer class="site"><div class="wrap"><div class="row">
+    <span>© 2026 CHPARK · Solo maker</span>
+    <span><a href="https://github.com/CHPARK03">GitHub</a> &nbsp;·&nbsp; <a href="{{ '/feed.xml' | relative_url }}">Dev Log RSS</a></span>
+  </div></div></footer>
+</body>
+</html>

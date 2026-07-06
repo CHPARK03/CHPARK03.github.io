@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<article class="case"><div class="wrap"><div class="cs">
+  <span class="eyebrow">Case study — {{ page.title }}</span>
+  <h1>{{ page.headline }}</h1>
+  <div class="meta">
+    <span class="tag{% if page.dim %} dim{% endif %}">{{ page.status }}</span>
+    {% for m in page.meta %}<span class="tag dim">{{ m }}</span>{% endfor %}
+  </div>
+  {% for s in page.steps %}
+  <div class="step"><span class="k">{{ s.k }}</span><h3>{{ s.h }}</h3><p>{{ s.p }}</p></div>
+  {% endfor %}
+  {% if page.links and page.links.size > 0 %}
+  <div class="cta" style="margin-top:.5rem;">
+    {% for l in page.links %}<a class="btn ghost" href="{% if l.url contains '://' %}{{ l.url }}{% else %}{{ l.url | relative_url }}{% endif %}">{{ l.label }} →</a>{% endfor %}
+  </div>
+  {% endif %}
+  {% assign body = content | strip %}{% if body != '' %}<div class="prose" style="margin-top:2.5rem;">{{ content }}</div>{% endif %}
+</div></div></article>

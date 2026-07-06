@@ -1,8 +1,20 @@
 # SASO Dev Log
 
-Source for [chpark03.github.io](https://chpark03.github.io) — a build-in-public dev log.
+Source for [chpark03.github.io](https://chpark03.github.io) — a build-in-public dev log & portfolio.
 
-Built with Jekyll (minima theme), deployed automatically by GitHub Pages on push.
+Custom Jekyll site (no theme gem). Deployed by GitHub Actions on push to `main`.
 
-- Posts live in `_posts/` as `YYYY-MM-DD-slug.md`
-- English and Korean posts are mixed, chosen per audience
+## Structure
+
+- `_posts/YYYY-MM-DD-slug.md` — dev log posts (Korean-first, English version included)
+- `_projects/*.md` — portfolio case studies (front-matter driven: `steps`, `status`, `links`)
+- `_layouts/` — custom layouts (`default`, `home`, `post`, `page`, `project`)
+- `assets/css/main.css` — full design system (dark default, `prefers-color-scheme` light)
+- `index.md` — home (hero + selected work + recent dev log)
+
+## Local preview
+
+```powershell
+bundle install
+bundle exec jekyll serve
+```

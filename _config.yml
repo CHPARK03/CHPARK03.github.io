@@ -3,10 +3,28 @@ description: Build-in-public notes from a solo maker — games, agents, and AI t
 url: "https://chpark03.github.io"
 baseurl: ""
 author: CHPARK03
-theme: minima
+lang: ko
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-show_excerpts: true
-header_pages:
-  - about.md
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project
+
+permalink: /:year/:month/:day/:title/
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
