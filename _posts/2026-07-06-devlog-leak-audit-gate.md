@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "에이전트가 기밀을 흘릴까 봐, \"유출은 있다\"고 가정하고 게시하는 파이프라인을 만들었다"
+title: "'유출은 있다'고 가정하는 게시 파이프라인"
 date: 2026-07-06
 tags: [claude-code, agents, build-in-public, devlog]
 ---
@@ -9,7 +9,7 @@ tags: [claude-code, agents, build-in-public, devlog]
 
 이 블로그는 이번 주에 열었다. 이건 두 번째 글이다.
 
-블로그를 열자마자 부딪힌 문제는 글감이 아니었다. 나는 하루 종일 뭔가를 만든다 — 한국 슈퍼앱에 올라가는 게임, 로컬에서만 도는 개인 에이전트, 1인 운영을 지탱하는 도구들. 글감은 넘친다. 문제는 **그 작업의 절반이 남에게 보여주면 안 되는 것들과 한 레포 안에 뒤엉켜 있다**는 거였다.
+블로그를 열자마자 부딪힌 문제는 글감이 아니었다. 나는 하루 종일 뭔가를 만든다 — 토스에 출시하는 게임, 로컬에서만 도는 개인 에이전트, 1인 운영을 지탱하는 도구들. 글감은 넘친다. 문제는 **그 작업의 절반이 남에게 보여주면 안 되는 것들과 한 레포 안에 뒤엉켜 있다**는 거였다.
 
 토스 심사·정산·mTLS 관련 기밀, 게임 밸런스의 정확한 수치, 자격증명 값, 로컬 절대경로. build-in-public을 하겠다면서 에이전트한테 "오늘 한 일 블로그 글로 써줘"라고 시키는 순간, 이것들 중 하나가 초안에 딸려 나올 확률은 0이 아니다. 그리고 한 번 게시되면 삭제해도 캐시·인덱스에 남는다. 되돌릴 수 없는 종류의 실수다.
 
@@ -46,7 +46,7 @@ tags: [claude-code, agents, build-in-public, devlog]
 
 소스가 완전 공개 프로젝트뿐이면 기계적 grep 검사로 충분하지만, 민감 프로젝트가 섞이면 위의 독립 감사 에이전트를 강제 호출한다. 그리고 감사 결과(PASS / 플래그 목록)를 나에게 **함께** 보여준다 — 감사를 몰래 통과시키는 걸 막기 위해서다.
 
-## 같은 테제, 다른 파이프라인
+## 같은 원칙, 다른 파이프라인
 
 돌아보면 이건 지난 글과 완전히 같은 생각의 재탕이다.
 
@@ -60,7 +60,7 @@ AgentRoom에서 배운 건 두 가지였다 — **주장을 믿지 말고 상태
 
 I opened this blog this week. This is the second post.
 
-The problem I hit right after opening it wasn't a shortage of topics. I build things all day — a game for a Korean super-app, a personal agent that runs only on my machine, tools that keep a one-person operation alive. There's plenty to write about. The problem was that **half of that work is tangled, inside a single repo, with things that must not be shown to anyone.**
+The problem I hit right after opening it wasn't a shortage of topics. I build things all day — a game I ship to Toss, a personal agent that runs only on my machine, tools that keep a one-person operation alive. There's plenty to write about. The problem was that **half of that work is tangled, inside a single repo, with things that must not be shown to anyone.**
 
 Toss review/settlement/mTLS confidential material, exact game-balance numbers, credential values, local absolute paths. The moment you tell an agent "turn today's work into a blog post" as your build-in-public routine, the odds that one of those slips into the draft aren't zero. And once something is published, deleting it doesn't remove it from caches and indexes. It's the irreversible kind of mistake.
 
