@@ -90,7 +90,6 @@ nav.top a:hover{ color:var(--seal); }
 
 /* ── hero: 원장 표지 + 검증필 낙관 ───────────────── */
 .hero{ padding:5.5rem 0 4.5rem; border-bottom:1px solid var(--rule); }
-.hero-grid{ display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; }
 .hero .eyebrow{ display:block; margin-bottom:1.5rem; }
 .hero h1{ font-family:var(--f-serif); font-size:clamp(2.15rem,5.6vw,3.3rem); line-height:1.22;
   font-weight:700; letter-spacing:-0.015em; margin:0 0 1.4rem; text-wrap:balance; }
@@ -102,21 +101,6 @@ nav.top a:hover{ color:var(--seal); }
 .btn.primary:hover{ opacity:.88; }
 .btn.ghost{ border:1px solid var(--rule-strong); color:var(--ink); }
 .btn.ghost:hover{ border-color:var(--seal); color:var(--seal); }
-
-/* 낙관 — 이 페이지의 서명 요소 */
-.seal-hero{ width:7.2rem; aspect-ratio:1/1; flex:none; align-self:start; margin-top:2.6rem;
-  display:flex; align-items:center; justify-content:center;
-  border:3px solid var(--seal); border-radius:8px; outline:1px solid var(--seal); outline-offset:3px;
-  transform:rotate(-5deg); opacity:.92;
-  animation:stampin .5s cubic-bezier(.2,.85,.3,1.05) .4s backwards; }
-.seal-hero span{ writing-mode:vertical-rl; font-family:var(--f-serif); font-weight:700;
-  font-size:1.75rem; letter-spacing:.22em; color:var(--seal); }
-@keyframes stampin{
-  0%{ transform:rotate(-5deg) scale(1.7); opacity:0; }
-  55%{ opacity:.92; }
-  72%{ transform:rotate(-5deg) scale(.965); }
-  100%{ transform:rotate(-5deg) scale(1); }
-}
 
 /* ── section: 원장 구획 (이중 괘선 헤드) ─────────── */
 section.block{ padding:3.6rem 0; border-bottom:1px solid var(--rule); }
@@ -216,10 +200,6 @@ a:focus-visible,.btn:focus-visible{ outline:2px solid var(--seal); outline-offse
 @media (max-width:560px){
   body{ font-size:16px; }
   .hero{ padding:3.4rem 0 3rem; }
-  .hero-grid{ gap:1.1rem; }
-  .hero h1{ font-size:1.9rem; }
-  .seal-hero{ width:4.7rem; border-width:2px; margin-top:2.2rem; }
-  .seal-hero span{ font-size:1.1rem; }
   ul.log li a{ flex-wrap:wrap; gap:.35rem .8rem; }
   ul.log .no{ width:auto; }
   ul.log .date{ width:auto; }
