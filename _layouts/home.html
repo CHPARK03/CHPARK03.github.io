@@ -1,24 +1,27 @@
 ---
 layout: default
 ---
-<section class="hero"><div class="wrap">
-  <span class="eyebrow">Solo maker — games · AI agents · tooling</span>
-  <h1>혼자 만들고, <span class="amp">스스로 검증</span>한다.</h1>
-  <p class="lead">기획부터 구현·검수·배포까지 혼자 도는 1인 스튜디오. 게임과 개인 AI 에이전트, 1인 운영을 지탱하는 도구를 만들고 — 만든 것과 부서진 것을 정직하게 기록합니다.</p>
-  <div class="cta">
-    <a class="btn primary" href="{{ '/#work' | relative_url }}">대표작 보기</a>
-    <a class="btn ghost" href="{{ '/#log' | relative_url }}">Dev Log 읽기</a>
+<section class="hero"><div class="wrap"><div class="hero-grid">
+  <div class="hero-copy">
+    <span class="eyebrow">Solo maker's ledger — games · AI agents · tooling</span>
+    <h1>혼자 만들고,<br><span class="u-seal">스스로 검증</span>한다.</h1>
+    <p class="lead">기획부터 구현·검수·배포까지 혼자 도는 1인 스튜디오. 게임과 개인 AI 에이전트, 1인 운영을 지탱하는 도구를 만들고 — 만든 것과 부서진 것을 정직하게 기록합니다.</p>
+    <div class="cta">
+      <a class="btn primary" href="{{ '/#work' | relative_url }}">대표작 보기</a>
+      <a class="btn ghost" href="{{ '/#log' | relative_url }}">Dev Log 읽기</a>
+    </div>
   </div>
-</div></section>
+  <div class="seal-hero" aria-hidden="true"><span>검증필</span></div>
+</div></div></section>
 
 <section class="block" id="work"><div class="wrap">
-  <div class="head"><h2>대표작 / Selected work</h2></div>
+  <div class="head"><h2>대표작 / Selected Work</h2><span class="head-note">verdict = 도장</span></div>
   <ul class="work">
     {% assign projects = site.projects | sort: 'order' %}
     {% for p in projects %}
     <li><a href="{{ p.url | relative_url }}">
       <span class="wt">{{ p.title }}</span>
-      <span class="tag{% if p.dim %} dim{% endif %}">{{ p.status }}</span>
+      <span class="stamp {% if p.status contains 'LIVE' %}live{% elsif p.status contains 'WIP' %}wip{% else %}open{% endif %}">{{ p.status }}</span>
       <span class="wd">{{ p.blurb }}</span>
     </a></li>
     {% endfor %}
@@ -26,10 +29,13 @@ layout: default
 </div></section>
 
 <section class="block" id="log"><div class="wrap">
-  <div class="head"><h2>Dev Log</h2></div>
+  <div class="head"><h2>Dev Log / 기록</h2></div>
   <ul class="log">
+    {% assign total = site.posts | size %}
     {% for post in site.posts %}
+    {% assign n = total | minus: forloop.index0 %}
     <li><a href="{{ post.url | relative_url }}">
+      <span class="no">No.{{ n | prepend: '000' | slice: -3, 3 }}</span>
       <span class="date">{{ post.date | date: "%Y.%m.%d" }}</span>
       <span class="lt">{{ post.title }}</span>
     </a></li>

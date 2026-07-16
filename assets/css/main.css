@@ -1,157 +1,231 @@
-/* SASO Dev Log — custom design system (dark default, typographic minimal) */
+/* SASO Dev Log — 검증 원장(ledger) design system
+   종이 장부 위에 판정 도장을 찍는다.
+   paper ground · Korean serif display · seal-stamp verdicts · ledger rules */
 
 :root{
-  /* dark = default */
-  --ground:#0d1014; --surface:#141a22; --raise:#1a212b;
-  --ink:#eceae4; --ink-dim:#b7bcc4; --muted:#828a95; --line:#232c37;
-  --accent:#e2a44e; --accent-soft:#e2a44e26; --on-accent:#12161c;
+  /* light = 종이 원장 (기본) */
+  --paper:#f4efe3; --paper-raise:#faf6ec; --paper-sink:#ebe4d1;
+  --ink:#1e2430; --ink-soft:#49505e; --faint:#6b655a;
+  --rule:#d9d0bb; --rule-strong:#b3a78b;
+  --seal:#b7352c; --seal-soft:#b7352c14;
+  --live:#276843; --live-soft:#27684312;
   --maxw:44rem; --wide:52rem;
-  --f-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  --f-serif:"Noto Serif KR","Nanum Myeongjo",Batang,"Apple SD Gothic Neo",serif;
+  --f-sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic","Apple SD Gothic Neo",sans-serif;
   --f-mono:ui-monospace,"SF Mono","Cascadia Code","JetBrains Mono",Consolas,"D2Coding",monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{ /* dark = 야간 장부 */
+    --paper:#14181f; --paper-raise:#1b2029; --paper-sink:#0f1319;
+    --ink:#e8e2d4; --ink-soft:#b6afa0; --faint:#948d7c;
+    --rule:#2a3039; --rule-strong:#4a5260;
+    --seal:#e2685b; --seal-soft:#e2685b1f;
+    --live:#5fb887; --live-soft:#5fb8871a;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="light"]{
+  --paper:#f4efe3; --paper-raise:#faf6ec; --paper-sink:#ebe4d1;
+  --ink:#1e2430; --ink-soft:#49505e; --faint:#6b655a;
+  --rule:#d9d0bb; --rule-strong:#b3a78b;
+  --seal:#b7352c; --seal-soft:#b7352c14;
+  --live:#276843; --live-soft:#27684312;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --paper:#14181f; --paper-raise:#1b2029; --paper-sink:#0f1319;
+  --ink:#e8e2d4; --ink-soft:#b6afa0; --faint:#948d7c;
+  --rule:#2a3039; --rule-strong:#4a5260;
+  --seal:#e2685b; --seal-soft:#e2685b1f;
+  --live:#5fb887; --live-soft:#5fb8871a;
   color-scheme:dark;
 }
-@media (prefers-color-scheme:light){
-  :root{ --ground:#f6f4ee; --surface:#fffefb; --raise:#efece3; --ink:#191c20; --ink-dim:#3c424b; --muted:#5c636d; --line:#e5dfd2; --accent:#a4670f; --accent-soft:#a4670f1a; --on-accent:#fffefb; color-scheme:light; }
-}
-:root[data-theme="dark"]{ --ground:#0d1014; --surface:#141a22; --raise:#1a212b; --ink:#eceae4; --ink-dim:#b7bcc4; --muted:#828a95; --line:#232c37; --accent:#e2a44e; --accent-soft:#e2a44e26; --on-accent:#12161c; color-scheme:dark; }
-:root[data-theme="light"]{ --ground:#f6f4ee; --surface:#fffefb; --raise:#efece3; --ink:#191c20; --ink-dim:#3c424b; --muted:#5c636d; --line:#e5dfd2; --accent:#a4670f; --accent-soft:#a4670f1a; --on-accent:#fffefb; color-scheme:light; }
 
 *{ box-sizing:border-box; }
 html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
-body{ margin:0; background:var(--ground); color:var(--ink); font-family:var(--f-sans);
-  font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; letter-spacing:-0.003em;
+body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-sans);
+  font-size:17px; line-height:1.7; -webkit-font-smoothing:antialiased; letter-spacing:-0.003em;
   word-break:keep-all; overflow-wrap:break-word; }
 .wrap{ max-width:var(--wide); margin:0 auto; padding:0 1.5rem; }
 a{ color:inherit; touch-action:manipulation; }
 img{ max-width:100%; height:auto; }
 [id]{ scroll-margin-top:72px; }
 
-/* skip link — keyboard/screen-reader jump to main content */
-.skip{ position:absolute; left:-9999px; top:0; z-index:10; background:var(--accent); color:var(--on-accent);
+/* skip link */
+.skip{ position:absolute; left:-9999px; top:0; z-index:10; background:var(--seal); color:var(--paper-raise);
   font-size:.9rem; padding:.6em 1em; border-radius:0 0 4px 0; text-decoration:none; }
 .skip:focus{ left:0; }
 
-/* mono label motif — the "record / verified" system */
+/* ── 원장 라벨 시스템 ─────────────────────────────── */
 .eyebrow{ font-family:var(--f-mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--muted); }
-.tag{ font-family:var(--f-mono); font-size:.68rem; letter-spacing:.06em; color:var(--accent);
-  border:1px solid var(--line); border-radius:2px; padding:.16em .5em; white-space:nowrap; }
-.tag.dim{ color:var(--muted); }
+  color:var(--faint); }
 
-/* header */
-header.site{ position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--ground) 88%, transparent);
-  backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
-header.site .row{ display:flex; align-items:center; justify-content:space-between; height:56px; }
-.mark{ font-family:var(--f-mono); font-weight:600; font-size:.9rem; letter-spacing:.02em; text-decoration:none; }
-.mark b{ color:var(--accent); }
+/* 도장(stamp) = 판정에만 쓴다: OPEN·MIT / LIVE / WIP */
+.stamp{ font-family:var(--f-mono); font-size:.66rem; font-weight:600; letter-spacing:.12em;
+  border:1.5px solid currentColor; border-radius:3px; padding:.3em .6em;
+  transform:rotate(-2.5deg); white-space:nowrap; }
+.stamp.open{ color:var(--seal); background:var(--seal-soft); }
+.stamp.live{ color:var(--live); background:var(--live-soft); }
+.stamp.wip{ color:var(--faint); border-style:dashed; background:transparent; }
+.stamp.lg{ font-size:.75rem; padding:.45em .8em; transform:rotate(-4deg); }
+
+/* chip = 메타데이터 (판정 아님 — 도장과 구분) */
+.chip{ font-family:var(--f-mono); font-size:.68rem; letter-spacing:.06em; color:var(--faint);
+  border:1px solid var(--rule); border-radius:2px; padding:.16em .5em; white-space:nowrap; }
+
+/* ── header ──────────────────────────────────────── */
+header.site{ position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:blur(8px); border-bottom:3px double var(--rule-strong); }
+header.site .row{ display:flex; align-items:center; justify-content:space-between; height:58px; }
+.mark{ display:inline-flex; align-items:center; gap:.5em; text-decoration:none; }
+.seal-mini{ display:inline-block; font-family:var(--f-serif); font-weight:700; font-size:.8rem;
+  color:var(--seal); border:1.5px solid var(--seal); border-radius:2px; padding:.08em .32em;
+  transform:rotate(-3deg); transition:transform .18s ease; }
+.mark:hover .seal-mini{ transform:rotate(0deg); }
+.mark .mk{ font-family:var(--f-mono); font-weight:600; font-size:.9rem; letter-spacing:.02em; }
 nav.top{ display:flex; gap:1.6rem; }
-nav.top a{ font-size:.9rem; color:var(--ink-dim); text-decoration:none; }
-nav.top a:hover{ color:var(--ink); }
+nav.top a{ font-size:.9rem; color:var(--ink-soft); text-decoration:none; }
+nav.top a:hover{ color:var(--seal); }
 
-/* hero */
-.hero{ padding:5.5rem 0 4rem; border-bottom:1px solid var(--line); }
-.hero .eyebrow{ display:block; margin-bottom:1.4rem; }
-.hero h1{ font-size:clamp(2.3rem,6vw,3.6rem); line-height:1.08; font-weight:700; letter-spacing:-0.025em;
-  margin:0 0 1.4rem; max-width:16ch; text-wrap:balance; }
-.hero h1 .amp{ color:var(--accent); }
-.hero p.lead{ font-size:1.15rem; color:var(--ink-dim); max-width:var(--maxw); margin:0 0 2rem; }
+/* ── hero: 원장 표지 + 검증필 낙관 ───────────────── */
+.hero{ padding:5.5rem 0 4.5rem; border-bottom:1px solid var(--rule); }
+.hero-grid{ display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; }
+.hero .eyebrow{ display:block; margin-bottom:1.5rem; }
+.hero h1{ font-family:var(--f-serif); font-size:clamp(2.15rem,5.6vw,3.3rem); line-height:1.22;
+  font-weight:700; letter-spacing:-0.015em; margin:0 0 1.4rem; text-wrap:balance; }
+.hero h1 .u-seal{ color:var(--seal); }
+.hero p.lead{ font-size:1.12rem; color:var(--ink-soft); max-width:var(--maxw); margin:0 0 2.1rem; }
 .cta{ display:flex; gap:.9rem; flex-wrap:wrap; }
-.btn{ font-size:.95rem; text-decoration:none; padding:.7em 1.25em; border-radius:3px; }
-.btn.primary{ background:var(--accent); color:var(--on-accent); font-weight:600; }
-.btn.primary:hover{ filter:brightness(1.08); }
-.btn.ghost{ border:1px solid var(--line); color:var(--ink); }
-.btn.ghost:hover{ border-color:var(--muted); }
+.btn{ font-size:.95rem; text-decoration:none; padding:.7em 1.3em; border-radius:3px; }
+.btn.primary{ background:var(--ink); color:var(--paper); font-weight:600; }
+.btn.primary:hover{ opacity:.88; }
+.btn.ghost{ border:1px solid var(--rule-strong); color:var(--ink); }
+.btn.ghost:hover{ border-color:var(--seal); color:var(--seal); }
 
-/* section frame */
-section.block{ padding:3.5rem 0; border-bottom:1px solid var(--line); }
-.head{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:1.8rem; gap:1rem; }
-.head h2{ font-size:1rem; font-weight:600; letter-spacing:-0.01em; margin:0; }
-.head a.more{ font-family:var(--f-mono); font-size:.75rem; color:var(--muted); text-decoration:none; white-space:nowrap; }
-.head a.more:hover{ color:var(--accent); }
+/* 낙관 — 이 페이지의 서명 요소 */
+.seal-hero{ width:7.2rem; aspect-ratio:1/1; flex:none; align-self:start; margin-top:2.6rem;
+  display:flex; align-items:center; justify-content:center;
+  border:3px solid var(--seal); border-radius:8px; outline:1px solid var(--seal); outline-offset:3px;
+  transform:rotate(-5deg); opacity:.92;
+  animation:stampin .5s cubic-bezier(.2,.85,.3,1.05) .4s backwards; }
+.seal-hero span{ writing-mode:vertical-rl; font-family:var(--f-serif); font-weight:700;
+  font-size:1.75rem; letter-spacing:.22em; color:var(--seal); }
+@keyframes stampin{
+  0%{ transform:rotate(-5deg) scale(1.7); opacity:0; }
+  55%{ opacity:.92; }
+  72%{ transform:rotate(-5deg) scale(.965); }
+  100%{ transform:rotate(-5deg) scale(1); }
+}
 
-/* selected work — list rows */
+/* ── section: 원장 구획 (이중 괘선 헤드) ─────────── */
+section.block{ padding:3.6rem 0; border-bottom:1px solid var(--rule); }
+.head{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem;
+  margin-bottom:1.6rem; padding-bottom:.7rem; border-bottom:3px double var(--rule-strong); }
+.head h2{ font-size:.95rem; font-weight:700; letter-spacing:.02em; margin:0; }
+.head .head-note{ font-family:var(--f-mono); font-size:.7rem; letter-spacing:.1em; color:var(--faint); }
+
+/* 대표작 — 검수 기록 행 */
 ul.work{ list-style:none; margin:0; padding:0; }
-ul.work li a{ display:grid; grid-template-columns:1fr auto; gap:.4rem 1rem; align-items:start;
-  text-decoration:none; padding:1.15rem 0; border-top:1px solid var(--line); transition:padding-left .18s ease; }
-ul.work li:first-child a{ border-top:none; }
-ul.work li a:hover{ padding-left:.6rem; }
-ul.work li a:hover .wt{ color:var(--accent); }
-.wt{ font-size:1.15rem; font-weight:600; letter-spacing:-0.01em; grid-column:1; min-width:0; transition:color .18s; }
-.wd{ grid-column:1; min-width:0; color:var(--muted); font-size:.95rem; }
-ul.work li a .tag{ grid-column:2; grid-row:1; align-self:center; }
+ul.work li{ border-top:1px solid var(--rule); }
+ul.work li:first-child{ border-top:none; }
+ul.work li a{ display:grid; grid-template-columns:1fr auto; gap:.45rem 1rem; align-items:start;
+  text-decoration:none; padding:1.2rem .6rem; margin:0 -.6rem;
+  border-radius:4px; transition:background .18s ease; }
+ul.work li a:hover{ background:var(--paper-raise); }
+ul.work li a:hover .wt{ color:var(--seal); }
+.wt{ font-family:var(--f-serif); font-size:1.22rem; font-weight:600; letter-spacing:-0.01em;
+  grid-column:1; min-width:0; transition:color .18s; }
+.wd{ grid-column:1; min-width:0; color:var(--faint); font-size:.95rem; }
+ul.work li a .stamp{ grid-column:2; grid-row:1; align-self:center; }
 
-/* dev log */
+/* dev log — 번호 붙은 기록부 */
 ul.log{ list-style:none; margin:0; padding:0; }
-ul.log li a{ display:flex; gap:1.1rem; align-items:baseline; text-decoration:none; padding:.85rem 0;
-  border-top:1px solid var(--line); }
+ul.log li a{ display:flex; gap:1.1rem; align-items:baseline; text-decoration:none; padding:.9rem 0;
+  border-top:1px solid var(--rule); }
 ul.log li:first-child a{ border-top:none; }
-ul.log .date{ font-family:var(--f-mono); font-size:.78rem; color:var(--muted); flex:none; width:5.7rem;
+ul.log .no{ font-family:var(--f-mono); font-size:.78rem; color:var(--seal); flex:none; width:3.6rem;
   font-variant-numeric:tabular-nums; }
-ul.log .lt{ color:var(--ink-dim); font-size:1rem; }
+ul.log .date{ font-family:var(--f-mono); font-size:.78rem; color:var(--faint); flex:none; width:5.7rem;
+  font-variant-numeric:tabular-nums; }
+ul.log .lt{ color:var(--ink-soft); font-size:1rem; }
 ul.log li a:hover .lt{ color:var(--ink); }
-ul.log li a:hover .lt::after{ content:" →"; color:var(--accent); }
+ul.log li a:hover .lt::after{ content:" →"; color:var(--seal); }
 
-/* case study (project) */
+/* ── case study (project) — 검수 카드 ────────────── */
 .case{ padding:4rem 0; }
-.case .eyebrow{ display:block; margin-bottom:1rem; }
-.case h1{ font-size:clamp(1.9rem,4.5vw,2.6rem); line-height:1.12; letter-spacing:-0.02em; margin:0 0 1rem;
-  max-width:20ch; text-wrap:balance; }
-.case .meta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:2.4rem; }
 .case .cs{ max-width:var(--maxw); }
-.case .step{ border-left:2px solid var(--accent); padding:.1rem 0 .1rem 1.3rem; margin:0 0 2.2rem; }
-.case .step .k{ font-family:var(--f-mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
-  color:var(--accent); display:block; margin-bottom:.5rem; }
-.case .step h3{ font-size:1.2rem; margin:0 0 .5rem; letter-spacing:-0.01em; }
-.case .step p{ margin:0; color:var(--ink-dim); }
+.case-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; margin-bottom:1.1rem; }
+.case h1{ font-family:var(--f-serif); font-size:clamp(1.8rem,4.4vw,2.5rem); line-height:1.28;
+  letter-spacing:-0.015em; margin:0 0 1.1rem; max-width:22ch; text-wrap:balance; }
+.case .meta{ display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1.6rem; padding-bottom:1.6rem;
+  border-bottom:3px double var(--rule-strong); }
+.case .step{ border-bottom:1px solid var(--rule); padding:1.7rem 0 1.9rem; }
+.case .step:last-of-type{ border-bottom:none; }
+.case .step .k{ font-family:var(--f-mono); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--seal); display:block; margin-bottom:.55rem; }
+.case .step h3{ font-family:var(--f-serif); font-size:1.22rem; margin:0 0 .55rem; letter-spacing:-0.01em; line-height:1.4; }
+.case .step p{ margin:0; color:var(--ink-soft); }
+.case .case-cta{ margin-top:2rem; }
+.case .case-body{ margin-top:2.5rem; }
 
-/* reading (post / page) */
+/* ── reading (post / page) ───────────────────────── */
 .reading{ padding:4rem 0; }
-.reading .eyebrow{ display:block; margin-bottom:.9rem; }
-.reading h1{ font-size:clamp(1.8rem,4vw,2.4rem); line-height:1.15; letter-spacing:-0.02em;
-  max-width:22ch; margin:0 0 1.6rem; text-wrap:balance; }
 .reading .body{ max-width:var(--maxw); }
+.reading .eyebrow{ display:block; margin-bottom:1rem; }
+.reading h1{ font-family:var(--f-serif); font-size:clamp(1.75rem,4vw,2.35rem); line-height:1.32;
+  letter-spacing:-0.015em; max-width:24ch; margin:0 0 1.5rem; text-wrap:balance; }
+.rulebar{ border-top:3px double var(--rule-strong); margin:0 0 2.2rem; }
 
-/* prose — markdown body (posts, pages, project extra content) */
-.prose h2{ font-size:1.35rem; font-weight:600; letter-spacing:-0.015em; line-height:1.25; margin:2.6rem 0 .9rem; }
-.prose h3{ font-size:1.12rem; font-weight:600; margin:2rem 0 .7rem; }
-.prose p{ margin:0 0 1.3rem; color:var(--ink-dim); }
-.prose a{ color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft); }
-.prose a:hover{ border-bottom-color:var(--accent); }
+/* prose — markdown 본문 */
+.prose h2{ font-family:var(--f-serif); font-size:1.35rem; font-weight:600; letter-spacing:-0.01em;
+  line-height:1.35; margin:2.7rem 0 .9rem; }
+.prose h3{ font-family:var(--f-serif); font-size:1.12rem; font-weight:600; margin:2rem 0 .7rem; }
+.prose p{ margin:0 0 1.3rem; color:var(--ink-soft); }
+.prose a{ color:var(--seal); text-decoration:none; border-bottom:1px solid var(--seal-soft); }
+.prose a:hover{ border-bottom-color:var(--seal); }
 .prose strong{ color:var(--ink); font-weight:600; }
-.prose em{ color:var(--muted); }
-.prose ul,.prose ol{ margin:0 0 1.3rem; padding-left:1.3rem; color:var(--ink-dim); }
+.prose em{ color:var(--faint); }
+.prose ul,.prose ol{ margin:0 0 1.3rem; padding-left:1.3rem; color:var(--ink-soft); }
 .prose li{ margin:.4rem 0; }
-.prose li::marker{ color:var(--muted); }
-.prose blockquote{ margin:1.8rem 0; padding:.6rem 0 .6rem 1.2rem; border-left:2px solid var(--accent);
-  color:var(--ink); font-size:1.1rem; }
+.prose li::marker{ color:var(--faint); }
+.prose blockquote{ margin:1.8rem 0; padding:.6rem 0 .6rem 1.2rem; border-left:2px solid var(--seal);
+  color:var(--ink); font-size:1.08rem; }
 .prose blockquote p{ color:var(--ink); margin:0; }
-.prose code{ font-family:var(--f-mono); font-size:.86em; background:var(--surface); border:1px solid var(--line);
-  border-radius:3px; padding:.1em .4em; }
-.prose pre{ background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:1rem 1.15rem;
-  overflow-x:auto; margin:0 0 1.4rem; }
+.prose code{ font-family:var(--f-mono); font-size:.86em; background:var(--paper-sink);
+  border:1px solid var(--rule); border-radius:3px; padding:.1em .4em; }
+.prose pre{ background:var(--paper-sink); border:1px solid var(--rule); border-radius:6px;
+  padding:1rem 1.15rem; overflow-x:auto; margin:0 0 1.4rem; }
 .prose pre code{ background:none; border:none; padding:0; font-size:.85rem; }
-.prose hr{ border:none; border-top:1px solid var(--line); margin:2.6rem 0; }
-.prose table{ width:100%; border-collapse:collapse; margin:0 0 1.4rem; font-size:.95rem; display:block; overflow-x:auto; }
-.prose th,.prose td{ text-align:left; padding:.6rem .7rem; border-bottom:1px solid var(--line); }
-.prose th{ color:var(--ink); font-weight:600; }
-.prose td{ color:var(--ink-dim); }
+.prose hr{ border:none; border-top:3px double var(--rule-strong); margin:2.8rem 0; }
+.prose table{ width:100%; border-collapse:collapse; margin:0 0 1.4rem; font-size:.95rem;
+  display:block; overflow-x:auto; }
+.prose th,.prose td{ text-align:left; padding:.6rem .7rem; border-bottom:1px solid var(--rule); }
+.prose th{ color:var(--ink); font-weight:600; border-bottom:3px double var(--rule-strong); }
+.prose td{ color:var(--ink-soft); }
 
-/* footer */
-footer.site{ padding:3rem 0 4rem; }
+/* ── footer: 장부 마감선 ─────────────────────────── */
+footer.site{ padding:2.6rem 0 4rem; border-top:3px double var(--rule-strong); margin-top:-1px; }
 footer.site .row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;
-  font-size:.85rem; color:var(--muted); }
-footer.site a{ color:var(--ink-dim); text-decoration:none; }
-footer.site a:hover{ color:var(--accent); }
+  font-family:var(--f-mono); font-size:.78rem; letter-spacing:.02em; color:var(--faint); }
+footer.site a{ color:var(--ink-soft); text-decoration:none; }
+footer.site a:hover{ color:var(--seal); }
 
-a:focus-visible,.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+a:focus-visible,.btn:focus-visible{ outline:2px solid var(--seal); outline-offset:3px; border-radius:2px; }
 
 @media (max-width:560px){
   body{ font-size:16px; }
-  ul.log .date{ width:4.6rem; }
-  ul.log li a{ gap:.8rem; }
-  .hero{ padding:3.5rem 0 3rem; }
+  .hero{ padding:3.4rem 0 3rem; }
+  .hero-grid{ gap:1.1rem; }
+  .hero h1{ font-size:1.9rem; }
+  .seal-hero{ width:4.7rem; border-width:2px; margin-top:2.2rem; }
+  .seal-hero span{ font-size:1.1rem; }
+  ul.log li a{ flex-wrap:wrap; gap:.35rem .8rem; }
+  ul.log .no{ width:auto; }
+  ul.log .date{ width:auto; }
+  ul.log .lt{ flex-basis:100%; }
 }
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }
-  *{ transition:none !important; }
+  *{ transition:none !important; animation:none !important; }
 }

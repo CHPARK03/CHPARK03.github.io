@@ -3,16 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0d1014" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f6f4ee" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14181f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4efe3" media="(prefers-color-scheme: light)">
   {%- seo -%}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   {%- feed_meta -%}
 </head>
 <body>
   <a class="skip" href="#main">본문으로 건너뛰기</a>
   <header class="site"><div class="wrap"><div class="row">
-    <a class="mark" href="{{ '/' | relative_url }}">SASO<b>·</b>log</a>
+    <a class="mark" href="{{ '/' | relative_url }}"><span class="seal-mini">사소</span><span class="mk">log</span></a>
     <nav class="top">
       <a href="{{ '/#work' | relative_url }}">대표작</a>
       <a href="{{ '/#log' | relative_url }}">Dev Log</a>
@@ -23,7 +27,7 @@
   <main id="main">{{ content }}</main>
 
   <footer class="site"><div class="wrap"><div class="row">
-    <span>© 2026 CHPARK · Solo maker</span>
+    <span>© 2026 CHPARK · Solo maker — 이 장부는 계속 기록됩니다</span>
     <span><a href="https://github.com/CHPARK03">GitHub</a></span>
   </div></div></footer>
 </body>

@@ -1,8 +1,11 @@
 ---
 layout: default
 ---
-<article class="reading"><div class="wrap"><div class="body prose">
-  <span class="eyebrow">Dev Log · {{ page.date | date: "%Y.%m.%d" }}</span>
+{% assign total = site.posts | size %}
+{% for p in site.posts %}{% if p.url == page.url %}{% assign n = total | minus: forloop.index0 %}{% endif %}{% endfor %}
+<article class="reading"><div class="wrap"><div class="body">
+  <span class="eyebrow">기록 No.{{ n | prepend: '000' | slice: -3, 3 }} — {{ page.date | date: "%Y.%m.%d" }}</span>
   <h1>{{ page.title }}</h1>
-  {{ content }}
+  <div class="rulebar" aria-hidden="true"></div>
+  <div class="prose">{{ content }}</div>
 </div></div></article>
