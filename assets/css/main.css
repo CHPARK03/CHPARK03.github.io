@@ -78,11 +78,9 @@ img{ max-width:100%; height:auto; }
 header.site{ position:sticky; top:0; z-index:5; background:color-mix(in srgb, var(--paper) 90%, transparent);
   backdrop-filter:blur(8px); border-bottom:3px double var(--rule-strong); }
 header.site .row{ display:flex; align-items:center; justify-content:space-between; height:58px; }
-.mark{ display:inline-flex; align-items:center; gap:.5em; text-decoration:none; }
-.seal-mini{ display:inline-block; font-family:var(--f-serif); font-weight:700; font-size:.8rem;
-  color:var(--seal); border:1.5px solid var(--seal); border-radius:2px; padding:.08em .32em;
-  transform:rotate(-3deg); transition:transform .18s ease; }
-.mark:hover .seal-mini{ transform:rotate(0deg); }
+.mark{ display:inline-flex; align-items:center; gap:.45em; text-decoration:none; }
+.mark-logo{ height:34px; width:auto; display:block; transition:transform .18s ease; }
+.mark:hover .mark-logo{ transform:scale(1.07); }
 .mark .mk{ font-family:var(--f-mono); font-weight:600; font-size:.9rem; letter-spacing:.02em; }
 nav.top{ display:flex; gap:1.6rem; }
 nav.top a{ font-size:.9rem; color:var(--ink-soft); text-decoration:none; }
