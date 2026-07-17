@@ -1,9 +1,9 @@
 /* SASO Dev Log — 검증 원장(ledger) design system
    종이 장부 위에 판정 도장을 찍는다.
-   paper ground · Korean serif display · seal-stamp verdicts · ledger rules */
+   paper ground · Korean serif display · seal-stamp verdicts · ledger rules
+   단일 라이트 테마 (종이 원장) — 다크 모드 없음 (2026-07-17 관리자 확정) */
 
 :root{
-  /* light = 종이 원장 (기본) */
   --paper:#f4efe3; --paper-raise:#faf6ec; --paper-sink:#ebe4d1;
   --ink:#1e2430; --ink-soft:#49505e; --faint:#6b655a;
   --rule:#d9d0bb; --rule-strong:#b3a78b;
@@ -15,33 +15,6 @@
   --f-mono:ui-monospace,"SF Mono","Cascadia Code","JetBrains Mono",Consolas,"D2Coding",monospace;
   color-scheme:light;
 }
-@media (prefers-color-scheme:dark){
-  :root{ /* dark = 야간 장부 */
-    --paper:#14181f; --paper-raise:#1b2029; --paper-sink:#0f1319;
-    --ink:#e8e2d4; --ink-soft:#b6afa0; --faint:#948d7c;
-    --rule:#2a3039; --rule-strong:#4a5260;
-    --seal:#e2685b; --seal-soft:#e2685b1f;
-    --live:#5fb887; --live-soft:#5fb8871a;
-    color-scheme:dark;
-  }
-}
-:root[data-theme="light"]{
-  --paper:#f4efe3; --paper-raise:#faf6ec; --paper-sink:#ebe4d1;
-  --ink:#1e2430; --ink-soft:#49505e; --faint:#6b655a;
-  --rule:#d9d0bb; --rule-strong:#b3a78b;
-  --seal:#b7352c; --seal-soft:#b7352c14;
-  --live:#276843; --live-soft:#27684312;
-  color-scheme:light;
-}
-:root[data-theme="dark"]{
-  --paper:#14181f; --paper-raise:#1b2029; --paper-sink:#0f1319;
-  --ink:#e8e2d4; --ink-soft:#b6afa0; --faint:#948d7c;
-  --rule:#2a3039; --rule-strong:#4a5260;
-  --seal:#e2685b; --seal-soft:#e2685b1f;
-  --live:#5fb887; --live-soft:#5fb8871a;
-  color-scheme:dark;
-}
-
 *{ box-sizing:border-box; }
 html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
 body{ margin:0; background:var(--paper); color:var(--ink); font-family:var(--f-sans);
