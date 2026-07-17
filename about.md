@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+<img src="/assets/img/saso-mark.png" alt="SASO Studio 로고" style="max-width:200px" loading="lazy">
+
 혼자서 처음부터 끝까지 만드는 1인 메이커입니다 — 게임, 개인 AI 에이전트, 그리고 1인 운영을 지탱하는 도구들.
 
 만드는 과정에서 배운 것과 부서진 것들을 이곳에 기록합니다. 글은 한국어를 우선으로 쓰고, 영어 버전을 함께 싣습니다.
