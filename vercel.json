@@ -3,6 +3,12 @@
   "framework": null,
   "installCommand": "bundle install",
   "buildCommand": "bundle exec jekyll build",
+  "build": {
+    "env": {
+      "LANG": "en_US.UTF-8",
+      "LC_ALL": "en_US.UTF-8"
+    }
+  },
   "outputDirectory": "_site",
   "trailingSlash": true
 }
