@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "두 대를 켜자 무너졌다"
+title: "실기기 검증 포스트모템"
 date: 2026-07-27 11:00:00 +0900
 tags: [game-dev, multiplayer, mobile, build-in-public]
 ---
@@ -9,7 +9,7 @@ tags: [game-dev, multiplayer, mobile, build-in-public]
 
 [지난 글](/2026/07/27/you-cant-report-your-own-win/)에서 1대1 대전의 판정과 정산을 서버 쪽으로 옮긴 이야기를 썼다. 그렇게 해놓고 로컬에서 브라우저 탭 두 개를 띄워 붙여보면 잘 돌았다. 판정도 맞고, 매칭도 붙고, 정산도 됐다.
 
-실기기 두 대를 켜자 그게 하나씩 무너졌다.
+실기기 두 대에서 검증을 돌리자 하나씩 깨졌다. 결함 5건을 잡고 1건은 결함이 아님을 확인한 기록이다.
 
 ## 큰 화면이 유리했다
 
@@ -33,7 +33,7 @@ tags: [game-dev, multiplayer, mobile, build-in-public]
 
 ## 끊기면 누가 심판인가
 
-가장 크게 무너진 곳이다.
+가장 크게 깨진 지점이다.
 
 한쪽 네트워크가 끊겼을 때를 처리하는 로직은 이미 있었다. 실기기 두 대로 시험하니 세 가지가 한꺼번에 드러났다. 끊긴 쪽 화면에는 "내가 끊겼다"와 "상대가 끊겼다"가 동시에 떠 있었다. 잠깐 끊겼다가 금방 돌아와도 양쪽 모두 패배로 처리됐다. 돌아오지 않은 사람 화면에는 자기가 이겼다고 떠 있었다.
 
@@ -72,6 +72,17 @@ tags: [game-dev, multiplayer, mobile, build-in-public]
 문제가 없는데 뭔가 고치는 쪽이 더 위험하다. 원인을 모르는 채로 손을 대면 그때부터 진짜 문제가 생긴다.
 
 ## 배운 것
+
+여섯 건을 한 표로 정리하면 이렇다.
+
+| 증상 | 근본 원인 | 조치 |
+|------|----------|------|
+| 큰 화면이 유리 | 물리 좌표계가 화면 픽셀에 결합 | 논리 좌표계 분리, 화면은 스케일링만 담당 |
+| 상대 보드 연출 누락 | 수신 측이 별도 렌더링 코드로 그림 | 그리기 함수를 공유 모듈로 이동 |
+| 끊김 판정 오류 3종 | 끊긴 기기에 판정 권한 잔존 + 신선도 기준 시각 불일치 | 잔류 측 단독 판정, 절대 시각 통일, 동반 일시정지 |
+| 같은 기기, 다른 화면 | 시스템 글꼴 배율이 WebView 텍스트를 확대 | 앱에서 배율 고정 |
+| 홈 버튼 겹침 | 절대 좌표 + 가변 라벨 길이 | 플로우 배치 전환, 고정 높이 → 최소 높이 |
+| 버전 미반영 제보 | 결함 아님 — 구 산출물/캐시 열람 추정 | 산출물 직접 확인 후 수정 없이 원인 공유 |
 
 여섯 가지 모두 로컬에서는 초록불이었다. 개발용 탭 두 개로 돌리면 화면 크기가 같고, 네트워크가 안 끊기고, 글꼴 배율이 기본값이고, 라벨이 짧다.
 
@@ -146,6 +157,17 @@ So I changed nothing, and passed along that an older artifact or a cached screen
 Editing code that isn't broken is the more dangerous move. Touch it without knowing the cause and that's when you get a real problem.
 
 ### What I took from it
+
+The six cases, in one table:
+
+| Symptom | Root cause | Fix |
+|---------|-----------|-----|
+| Bigger screen wins | Physics coupled to screen pixels | Detached logical coordinates; screen only scales |
+| Opponent's effects missing | Receiving side drew with separate code | Drawing functions moved into a shared module |
+| Three disconnect-verdict failures | Judging authority left on the dropped device + mismatched freshness clocks | Only the connected side judges; one absolute clock; paired pause |
+| Same device, different screen | System font scale inflating WebView text | Scale pinned in the app |
+| Overlapping home buttons | Absolute coordinates + variable label lengths | Flow layout; fixed heights → minimums |
+| "Version didn't bump" report | Not a defect — stale artifact/cache | Verified the artifact directly; changed nothing, shared the cause |
 
 All six were green locally. Two dev tabs mean identical screen sizes, no dropped connections, default font scaling, short labels.
 

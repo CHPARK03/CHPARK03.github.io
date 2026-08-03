@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "승리는 자기가 신고할 수 없다"
+title: "클라이언트를 믿지 않는 대전 설계"
 date: 2026-07-27 10:00:00 +0900
 tags: [game-dev, multiplayer, firebase, build-in-public]
 ---
@@ -21,13 +21,13 @@ tags: [game-dev, multiplayer, firebase, build-in-public]
 
 그래서 결과를 각자 판단하지 않게 만들었다. 어느 경로로 끝나든 확정은 두 기기가 공유하는 결과 자리를 반드시 거친다. **먼저 그 자리에 남은 기록이 그 경기의 결론이고, 늦게 도착한 쪽은 자기 판단을 버리고 그 결론을 읽어서 표시한다.** 양쪽 화면이 어긋날 수 없는 구조가 된다.
 
-나머지는 경로별 예외 처리였다. 두 보드가 사실상 동시에 끝나면 사망 시각을 비교해 다시 판정하고, 시간 종료는 상대 보고를 기다리되 앱이 백그라운드로 내려가 시계가 밀리는 경우를 대비해 기다림에 절대 상한을 뒀다. 한쪽이 나가면 잠깐 기다린 뒤 남은 사람의 승리로 넘겼다. 이 이탈 처리는 나중에 실기기 두 대에서 크게 무너져 전면 재설계하게 되는데, 그건 다음 글에서 따로 다룬다.
+나머지는 경로별 예외 처리였다. 두 보드가 사실상 동시에 끝나면 사망 시각을 비교해 다시 판정하고, 시간 종료는 상대 보고를 기다리되 앱이 백그라운드로 내려가 시계가 밀리는 경우를 대비해 기다림에 절대 상한을 뒀다. 한쪽이 나가면 잠깐 기다린 뒤 남은 사람의 승리로 넘겼다. 이 이탈 처리는 나중에 실기기 두 대 검증에서 크게 깨져 전면 재설계하게 되는데, 그건 다음 글에서 따로 다룬다.
 
 ## 방은 누가 만드는가
 
 다음은 자동 매칭이었다. 방 코드를 주고받는 사설 대전은 이미 돌고 있었지만, 아무나 눌러도 상대가 붙는 랭크 매치가 필요했다.
 
-문제는 나에게 매치메이커 서버가 없다는 것이다. 대기열을 실시간 DB에 두고 클라이언트끼리 붙게 하면, 둘이 동시에 서로를 발견하는 순간이 온다. 둘 다 방을 만들면 방이 두 개 생기고 각자 빈 방에서 상대를 기다린다.
+문제는 나에게 매치메이커 서버가 없다는 것이다. 대기열을 실시간 DB에 두고 클라이언트끼리 붙게 하면, 둘이 동시에 서로를 발견하는 순간이 온다. 둘 다 방을 만들면 방이 두 개 생기고 각자 빈 방에서 상대를 기다린다. 전형적인 경쟁 상태(race condition)다.
 
 해결은 중재자를 두는 대신 결론이 하나로만 나오게 만드는 쪽이었다. **두 사람의 ID 중 작은 쪽이 방을 만든다.** 쌍마다 유일하게 정해지는 값이라 누가 먼저 상대를 발견했든 결론이 같다. 작은 쪽이 방을 만들고 자기 대기열 항목에 방 번호를 적으면, 큰 쪽이 그걸 읽고 들어가면서 입장 흔적을 남긴다. 경합할 여지 자체가 사라진다.
 
@@ -52,6 +52,14 @@ tags: [game-dev, multiplayer, firebase, build-in-public]
 위조 방어도 같은 트랜잭션 안에 넣었다. 두 참가자 모두 그 방에 들어온 흔적이 남아 있고, 각 흔적의 신원이 배정된 역할과 일치할 때만 정산이 유효하다. 방에 들어온 적도 없는 사람을 패자로 지목하는 요청은 통과하지 못한다.
 
 ## 관통하는 것
+
+세 문제를 한 표로 놓으면 이렇다.
+
+| 영역 | 취약 지점 | 해결 |
+|------|----------|------|
+| 승패 판정 | 클라이언트가 "이겼다"를 보낼 수 있음 | 자기 패배만 신고 + 공유 결과 자리에 선착순 확정 |
+| 자동 매칭 | 동시 발견 시 방 2개 생성(경쟁 상태) | 작은 ID가 방을 만드는 결정적 규칙으로 경합 제거 |
+| 트로피 정산 | 멱등성 마커와 보상이 다른 저장소에 분리 | 원장을 보상과 같은 DB로 옮겨 단일 트랜잭션 커밋 |
 
 세 가지 다 결국 같은 자리에서 나왔다. 클라이언트가 하는 말은 단서일 뿐 증거가 아니라는 것.
 
@@ -108,6 +116,14 @@ The fix was to move the marker next to the effect. The settlement ledger now liv
 Forgery defense went into the same transaction. Settlement is only valid if both participants left a join marker in that room and each marker's identity matches the role it was assigned. A request naming someone who never entered the room doesn't get through.
 
 ### The thread running through it
+
+The three problems, side by side:
+
+| Area | Vulnerable point | Fix |
+|------|------------------|-----|
+| Verdicts | A client could send "I won" | Report only your own loss + first write to a shared result slot wins |
+| Matchmaking | Simultaneous discovery creates two rooms (race condition) | Deterministic rule — the smaller ID creates the room — removes the race |
+| Trophy settlement | Idempotency marker and reward split across two stores | Ledger moved next to the reward, committed in one transaction |
 
 All three came from the same place: what a client says is a lead, not evidence.
 
