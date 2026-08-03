@@ -4,7 +4,7 @@ title: 사소
 headline: 내 기계에서만 도는 로컬 LLM 개인 에이전트
 status: WIP
 dim: true
-order: 3
+order: 4
 blurb: 내 컴퓨터에서만 도는 로컬 LLM 개인 에이전트. 클라우드 없이, 내 데이터는 내 기계에.
 meta: [Local LLM, 개인용, WIP]
 steps:

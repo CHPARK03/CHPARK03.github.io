@@ -1,4 +1,6 @@
-name: Deploy Jekyll site to Pages
+# chpark03.github.io는 saso-studio.vercel.app으로 이사 — 이 워크플로는 리다이렉트 스텁만 배포한다.
+# 본 사이트 배포는 Vercel(프로젝트 saso-studio, main push 시 자동 빌드)이 담당한다.
+name: Deploy redirect stubs to Pages
 
 on:
   push:
@@ -16,29 +18,20 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload redirect stubs
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./redirects
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

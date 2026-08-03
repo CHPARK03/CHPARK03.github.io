@@ -4,7 +4,7 @@ title: AgentRoom
 headline: 에이전트의 "완료"를 믿지 않는 오케스트레이션
 status: OPEN · MIT
 dim: false
-order: 1
+order: 3
 blurb: 사람이 게이트를 쥐는 Claude Code 멀티에이전트 오케스트레이션 — planner·dev·qa 핑퐁 + 필요할 때만 붙는 researcher, 되돌리기 어려운 건 사람이 승인.
 meta: [Claude Code, v1.1.0, 2026]
 steps:

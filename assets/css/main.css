@@ -41,6 +41,7 @@ img{ max-width:100%; height:auto; }
 .stamp.open{ color:var(--seal); background:var(--seal-soft); }
 .stamp.live{ color:var(--live); background:var(--live-soft); }
 .stamp.wip{ color:var(--faint); border-style:dashed; background:transparent; }
+.stamp.closed{ color:var(--ink-soft); background:var(--paper-sink); border-style:double; border-width:3px; }
 .stamp.lg{ font-size:.75rem; padding:.45em .8em; transform:rotate(-4deg); }
 
 /* chip = 메타데이터 (판정 아님 — 도장과 구분) */
@@ -61,11 +62,18 @@ nav.top a:hover{ color:var(--seal); }
 
 /* ── hero: 원장 표지 + 검증필 낙관 ───────────────── */
 .hero{ padding:5.5rem 0 4.5rem; border-bottom:1px solid var(--rule); }
+.hero .seal-big{ display:block; margin-bottom:1.4rem;
+  animation:stampIn .45s cubic-bezier(.2,1.6,.4,1) both; }
+@keyframes stampIn{
+  from{ transform:rotate(-8deg) scale(1.5); opacity:0; }
+  to{ transform:rotate(0) scale(1); opacity:1; }
+}
 .hero .eyebrow{ display:block; margin-bottom:1.5rem; }
 .hero h1{ font-family:var(--f-serif); font-size:clamp(2.15rem,5.6vw,3.3rem); line-height:1.22;
   font-weight:700; letter-spacing:-0.015em; margin:0 0 1.4rem; text-wrap:balance; }
 .hero h1 .u-seal{ color:var(--seal); }
-.hero p.lead{ font-size:1.12rem; color:var(--ink-soft); max-width:var(--maxw); margin:0 0 2.1rem; }
+.hero p.lead{ font-size:1.12rem; color:var(--ink-soft); max-width:var(--maxw); margin:0 0 .7rem; }
+.hero p.lead-en{ font-family:var(--f-mono); font-size:.82rem; color:var(--faint); margin:0 0 2.1rem; }
 .cta{ display:flex; gap:.9rem; flex-wrap:wrap; }
 .btn{ font-size:.95rem; text-decoration:none; padding:.7em 1.3em; border-radius:3px; }
 .btn.primary{ background:var(--ink); color:var(--paper); font-weight:600; }
