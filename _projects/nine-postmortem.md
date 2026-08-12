@@ -4,6 +4,7 @@ title: 아홉 개의 마침표
 headline: 앱 9개를 만들고, 9개 전부 마침표를 찍었다
 status: CLOSED ×9
 dim: true
+listed: false
 order: 5
 blurb: 누적 19.5일, 37,886줄. 기술적으로 실패한 건 하나도 없다 — 전부 제품으로서 답을 찾지 못했다. 그래서 빠르게 검증하고 정리하는 법을 배웠다.
 meta: [Postmortem, 2026]

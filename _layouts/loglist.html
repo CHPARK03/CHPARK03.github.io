@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<section class="block logpage"><div class="wrap">
+  <div class="head">
+    <h2>{{ page.title }}</h2>
+    <span class="head-note">총 {{ site.posts | size }}편</span>
+  </div>
+  {% if page.intro %}<p class="logpage-intro">{{ page.intro }}</p>{% endif %}
+  <ul class="log">
+    {% assign pinned = site.posts | where_exp: "p", "p.pinned" %}
+    {% assign rest = site.posts | where_exp: "p", "p.pinned != true" %}
+    {% assign feed = pinned | concat: rest %}
+    {% for post in feed %}{% include log-item.html post=post %}{% endfor %}
+  </ul>
+</div></section>

@@ -86,6 +86,13 @@ section.block{ padding:3.6rem 0; border-bottom:1px solid var(--rule); }
   margin-bottom:1.6rem; padding-bottom:.7rem; border-bottom:3px double var(--rule-strong); }
 .head h2{ font-size:.95rem; font-weight:700; letter-spacing:.02em; margin:0; }
 .head .head-note{ font-family:var(--f-mono); font-size:.7rem; letter-spacing:.1em; color:var(--faint); }
+/* 구획 헤드 우측 — 전체 보기로 넘어가는 화살표 */
+.head .head-more{ font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; color:var(--faint);
+  text-decoration:none; white-space:nowrap; flex:none;
+  border-bottom:1px solid transparent; transition:color .18s ease, border-color .18s ease; }
+.head .head-more span{ display:inline-block; transition:transform .18s ease; }
+.head .head-more:hover{ color:var(--seal); border-bottom-color:var(--seal); }
+.head .head-more:hover span{ transform:translateX(3px); }
 
 /* 대표작 — 검수 기록 행 */
 ul.work{ list-style:none; margin:0; padding:0; }
@@ -113,6 +120,14 @@ ul.log .date{ font-family:var(--f-mono); font-size:.78rem; color:var(--faint); f
 ul.log .lt{ color:var(--ink-soft); font-size:1rem; }
 ul.log li a:hover .lt{ color:var(--ink); }
 ul.log li a:hover .lt::after{ content:" →"; color:var(--seal); }
+/* 고정(pin) 기록 — 날짜와 무관하게 항상 최상단 */
+ul.log li.pinned .lt{ color:var(--ink); }
+.pin-badge{ font-family:var(--f-mono); font-size:.62rem; font-weight:600; letter-spacing:.1em;
+  color:var(--seal); background:var(--seal-soft); border:1px solid var(--rule);
+  border-radius:2px; padding:.15em .45em; margin-right:.55em; white-space:nowrap; }
+/* Dev Log 전체 페이지 */
+.logpage{ padding-top:3rem; border-bottom:none; }
+.logpage-intro{ color:var(--faint); font-size:.95rem; margin:-.6rem 0 1.6rem; }
 
 /* ── case study (project) — 검수 카드 ────────────── */
 .case{ padding:4rem 0; }

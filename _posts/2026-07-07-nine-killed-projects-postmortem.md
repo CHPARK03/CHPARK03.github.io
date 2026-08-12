@@ -2,6 +2,7 @@
 layout: post
 title: "프로젝트 9개 실패의 교훈"
 date: 2026-07-07
+pinned: true
 tags: [build-in-public, postmortem, product, solo-dev]
 ---
 

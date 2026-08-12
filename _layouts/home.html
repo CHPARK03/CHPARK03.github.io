@@ -14,9 +14,9 @@ layout: default
 </div></section>
 
 <section class="block" id="work"><div class="wrap">
-  <div class="head"><h2>대표작 / Selected Work</h2><span class="head-note">verdict = 도장</span></div>
+  <div class="head"><h2>대표작 / Selected Work</h2></div>
   <ul class="work">
-    {% assign projects = site.projects | sort: 'order' %}
+    {% assign projects = site.projects | where_exp: "p", "p.listed != false" | sort: 'order' %}
     {% for p in projects %}
     <li><a href="{{ p.url | relative_url }}">
       <span class="wt">{{ p.title }}</span>
@@ -28,16 +28,15 @@ layout: default
 </div></section>
 
 <section class="block" id="log"><div class="wrap">
-  <div class="head"><h2>Dev Log / 기록</h2></div>
+  <div class="head">
+    <h2>Dev Log / 기록</h2>
+    <a class="head-more" href="{{ '/log/' | relative_url }}">전체 보기 <span aria-hidden="true">→</span></a>
+  </div>
   <ul class="log">
-    {% assign total = site.posts | size %}
-    {% for post in site.posts %}
-    {% assign n = total | minus: forloop.index0 %}
-    <li><a href="{{ post.url | relative_url }}">
-      <span class="no">No.{{ n | prepend: '000' | slice: -3, 3 }}</span>
-      <span class="date">{{ post.date | date: "%Y.%m.%d" }}</span>
-      <span class="lt">{{ post.title }}</span>
-    </a></li>
-    {% endfor %}
+    {% assign pinned = site.posts | where_exp: "p", "p.pinned" %}
+    {% assign rest = site.posts | where_exp: "p", "p.pinned != true" %}
+    {% assign feed = pinned | concat: rest %}
+    {% assign feed = feed | slice: 0, 3 %}
+    {% for post in feed %}{% include log-item.html post=post %}{% endfor %}
   </ul>
 </div></section>
