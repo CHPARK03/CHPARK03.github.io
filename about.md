@@ -8,7 +8,7 @@ permalink: /about/
 
 ## Saso Studio
 
-사소 스튜디오는 1인 스튜디오입니다. 게임과 1인 운영을 지탱하는 도구를 기획부터 구현·검수·배포·운영까지 혼자 만듭니다.
+사소 스튜디오는 게임과 그 운영을 지탱하는 도구를 만드는 개발 스튜디오입니다. 기획부터 구현·검수·배포·운영까지 직접 만듭니다.
 
 일하는 방식은 세 마디로 요약됩니다 — **만들고, 검증하고, 공개한다.**
 
@@ -42,13 +42,13 @@ permalink: /about/
 
 ## English
 
-Saso Studio is a one-person studio. I build games and the tooling that keeps a one-person operation running — planning, building, reviewing, shipping, and operating everything solo.
+Saso Studio is a development studio building games and the tooling that keeps them running — planning, building, reviewing, shipping, and operating everything in-house.
 
-Three words sum up how I work — **build, verify, publish.**
+Three words sum up how the studio works — **build, verify, publish.**
 
 - **Build**: ship a minimal core fast, judge it by real use, and close projects that don't earn their place — with a postmortem every time.
-- **Verify**: never trust "done" claims, from agents or from myself; check the actual state. That principle became an open-source tool (AgentRoom).
-- **Publish**: everything I learn (and break) along the way goes into the Dev Log on this site.
+- **Verify**: never trust "done" claims, from agents or from ourselves; check the actual state. That principle became an open-source tool (AgentRoom).
+- **Publish**: everything we learn (and break) along the way goes into the Dev Log on this site.
 
 ### Shipped & in progress
 

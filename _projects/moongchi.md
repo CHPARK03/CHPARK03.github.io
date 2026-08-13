@@ -1,7 +1,7 @@
 ---
 layout: project
 title: 뭉치뭉치
-headline: 혼자 만들어 세 채널에 출시한 물리 머지 퍼즐
+headline: 직접 만들어 세 채널에 출시한 물리 머지 퍼즐
 status: LIVE
 dim: false
 order: 1
