@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "거짓 통과 신호 10가지"
+title: "수분 코치 - 거짓 통과 신호 10가지"
 date: 2026-08-27
 tags: [build-in-public, engineering, testing, observability, solo-dev]
 ---

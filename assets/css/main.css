@@ -122,9 +122,8 @@ ul.log li a:hover .lt{ color:var(--ink); }
 ul.log li a:hover .lt::after{ content:" →"; color:var(--seal); }
 /* 고정(pin) 기록 — 날짜와 무관하게 항상 최상단 */
 ul.log li.pinned .lt{ color:var(--ink); }
-.pin-badge{ font-family:var(--f-mono); font-size:.62rem; font-weight:600; letter-spacing:.1em;
-  color:var(--seal); background:var(--seal-soft); border:1px solid var(--rule);
-  border-radius:2px; padding:.15em .45em; margin-right:.55em; white-space:nowrap; }
+.pin-badge{ display:inline-flex; align-items:center; color:var(--seal);
+  margin-right:.45em; vertical-align:-.05em; }
 /* Dev Log 전체 페이지 */
 .logpage{ padding-top:3rem; border-bottom:none; }
 .logpage-intro{ color:var(--faint); font-size:.95rem; margin:-.6rem 0 1.6rem; }
