@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "뭉치뭉치 - 런타임 채널 판정"
-date: 2026-08-28 10:30:00 +0900
+date: 2026-08-28 01:30:00 +0900
 tags: [architecture, mobile, firebase, build-in-public]
 ---
 

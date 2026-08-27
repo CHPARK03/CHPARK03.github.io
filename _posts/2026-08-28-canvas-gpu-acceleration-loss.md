@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "뭉치뭉치 - 캔버스 GPU 가속 상실"
-date: 2026-08-28 10:00:00 +0900
+date: 2026-08-28 01:00:00 +0900
 tags: [performance, canvas, mobile, build-in-public]
 ---
 
