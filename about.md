@@ -21,7 +21,7 @@ permalink: /about/
 | 프로젝트 | 소개 | 상태 |
 |---|---|---|
 | [뭉치뭉치](/projects/moongchi/) | 물리 기반 머지 퍼즐 게임 — 웹 · 원스토어 · 앱인토스(토스 앱) 세 채널 출시 | LIVE |
-| [수분 코치](/projects/hydro-coach/) | 체감온도로 수분 목표를 동적 산정하는 앱인토스 미니앱 — 개인화 알림까지 출시 | LIVE |
+| [수분 코치](/projects/hydro-coach/) | 체감온도로 수분 목표를 동적 산정하는 앱인토스 미니앱 — 출시 후 D1 리텐션 0으로 개발 중단(앱은 라이브 유지) | 종료 |
 | [AgentRoom](/projects/agentroom/) | 사람이 게이트를 쥐는 Claude Code 멀티에이전트 오케스트레이션 (MIT 오픈소스) | OPEN |
 | [아홉 개의 마침표](/projects/nine-postmortem/) | 종료한 프로젝트 9개의 회고 — 빠르게 검증하고 정리하는 규율 | CLOSED |
 
@@ -55,7 +55,7 @@ Three words sum up how the studio works — **build, verify, publish.**
 | Project | What it is | Status |
 |---|---|---|
 | [MoongchiMoongchi](/projects/moongchi/) | Physics-based merge puzzle game — shipped on web, ONE store, and Apps in Toss | LIVE |
-| [Hydro Coach](/projects/hydro-coach/) | Apps-in-Toss mini-app that sets daily hydration goals from real weather data, with personalized notifications | LIVE |
+| [Hydro Coach](/projects/hydro-coach/) | Apps-in-Toss mini-app that sets daily hydration goals from real weather data — shipped, then closed on zero D1 retention (app still live) | CLOSED |
 | [AgentRoom](/projects/agentroom/) | Human-gated multi-agent orchestration for Claude Code (MIT, open source) | OPEN |
 | [Nine Full Stops](/projects/nine-postmortem/) | Postmortem of nine killed projects — the discipline of fast validation | CLOSED |
 
