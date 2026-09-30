@@ -13,7 +13,7 @@ The old address [chpark03.github.io](https://chpark03.github.io) is frozen as re
 - `archive.md` — `/archive/` page listing closed projects (`archived: true` in `_projects/`)
 - `_layouts/` — custom layouts (`default`, `home`, `post`, `page`, `project`, `loglist`, `archivelist`)
 - `_includes/` — `log-item`, `work-item` (project row), `play-buttons` (store buttons from a project's `play:` list)
-- Post front matter: `project:` (links the post to a `_projects/` card) · optional `summary:` (summary box). Posts keep the KO → `---` → `## English version` structure; the post layout splits on it for the KO/EN switch.
+- Post front matter: `project:` (links the post to a `_projects/` card) · optional `description:` (summary box + SEO/share description). Posts keep the KO → `---` → `## English version` structure; the post layout splits on it for the KO/EN switch.
 - `assets/css/main.css` — full design system ("검증 원장" ledger: paper light single theme; seal-stamp verdict motif)
 - `redirects/` — static redirect stubs served at chpark03.github.io (excluded from Jekyll build)
 - `vercel.json` — Vercel build config (`bundle exec jekyll build` → `_site`)

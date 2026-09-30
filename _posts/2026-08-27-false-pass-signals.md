@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "수분 코치 - 거짓 통과 신호 10가지"
+description: "수분 코치를 만든 한 달 동안 「통과했다」는 신호가 실제로는 아무것도 보지 않았던 10가지 사례. 실패에 붙은 HTTP 200, 코드를 바꿔도 통과하는 테스트, 214건이 통과하는 가운데 살아남은 버그 등."
 date: 2026-08-27
 project: hydro-coach
 tags: [build-in-public, engineering, testing, observability, indie-dev]

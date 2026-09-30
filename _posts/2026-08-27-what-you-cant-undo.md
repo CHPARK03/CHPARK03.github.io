@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "밤샘팟 - 되돌릴 수 없는 것들"
+description: "미니앱 배포의 되돌릴 수 없는 동작 앞에서 만든 습관. 제출 전 기계 검사와 승인, 승인난 번들을 버린 판단, 미리보기로 시작한 SDK 전환, 문서보다 실제 시스템을 믿는 법."
 date: 2026-08-27 12:00:00 +0900
 project: night-pod
 tags: [release, process, mobile, build-in-public]

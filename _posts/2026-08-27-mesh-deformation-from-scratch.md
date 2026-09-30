@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "밤샘팟 - 그림에 없는 관절"
+description: "밤샘팟의 베개 캐릭터를 리깅 도구 없이 직접 짠 메시 변형으로 움직인 기록. 35벌이 될 뻔한 그림을 7 + 5로 줄이고, 원화에 없는 관절 때문에 팔을 여섯 번 고쳤다."
 date: 2026-08-27 11:00:00 +0900
 project: night-pod
 tags: [webgl, animation, mobile, build-in-public]

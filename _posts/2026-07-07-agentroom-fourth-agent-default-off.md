@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "네 번째 에이전트 - researcher"
+description: "AgentRoom v1.1.0에 조사 에이전트 researcher를 추가하면서, 잘 만드는 법보다 언제 부르지 않을지를 먼저 정했다. 기본은 꺼짐이고, 부르면 독립 컨텍스트에서 마음껏 조사한 뒤 출처가 붙은 요약만 돌려준다."
 date: 2026-07-07
 project: agentroom
 tags: [claude-code, agents, agentroom, build-in-public]

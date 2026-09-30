@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "수분 코치 - 첫 출시작의 D1 리텐션 0"
+description: "심사를 통과해 출시까지 간 수분 코치를 접었다. 유입된 22명 중 다음 날 다시 연 사람은 0명이었다. 심사 방어 논리를 제품 가치로 착각했고, 계측 없이 유입을 태웠고, 사용자가 없을 때 재방문 엔진부터 만들었다."
 date: 2026-08-27
 project: hydro-coach
 tags: [build-in-public, postmortem, product, apps-in-toss, public-api]

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "클라이언트를 믿지 않는 대전 설계"
+description: "퍼즐 게임에 사람 대 사람 대전을 붙이며 세운 원칙은 「클라이언트의 말은 단서일 뿐 증거가 아니다」였다. 자기 패배만 신고하는 판정, ID로 방장을 정하는 매칭, 트로피와 같은 트랜잭션 안의 정산 원장으로 풀었다."
 date: 2026-07-27 10:00:00 +0900
 project: moongchi
 tags: [game-dev, multiplayer, firebase, build-in-public]

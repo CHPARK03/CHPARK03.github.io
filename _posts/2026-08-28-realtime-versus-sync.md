@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "뭉치뭉치 - 실시간 대전 동기화"
+description: "싱글 플레이용 물리 퍼즐 엔진을 고치지 않고 1대1 실시간 대전을 붙인 구조. 보드 1장 = 참가자 1명, 봇과 원격 상대를 같은 Opponent 계약으로 교체, 스냅샷 스트림, 고정 논리 치수로 지킨 공정성."
 date: 2026-08-28 02:00:00 +0900
 project: moongchi
 tags: [game-dev, multiplayer, architecture, build-in-public]

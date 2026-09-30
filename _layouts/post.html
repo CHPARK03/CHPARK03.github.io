@@ -38,8 +38,8 @@ layout: default
   {% endif %}
 
   <div data-pane="ko" lang="ko">
-    {% if page.summary %}
-    <div class="summary"><span class="summary-k">요약</span><p>{{ page.summary }}</p></div>
+    {% if page.description %}
+    <div class="summary"><span class="summary-k">요약</span><p>{{ page.description }}</p></div>
     {% endif %}
     {% if hs.size > 3 %}
     <nav class="toc" aria-label="이 글의 구성">

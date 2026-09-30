@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "실기기 검증 포스트모템"
+description: "로컬 탭 두 개에서는 잘 돌던 1대1 대전이 실기기 두 대에서 깨졌다. 화면 크기 유불리, 연출 불일치, 끊김 판정, 시스템 글꼴 배율, 버튼 겹침을 잡고, 결함이 아니었던 1건은 고치지 않은 기록."
 date: 2026-07-27 11:00:00 +0900
 project: moongchi
 tags: [game-dev, multiplayer, mobile, build-in-public]

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "밤샘팟 - 실기기 13차"
+description: "밤샘팟 출시 직전 하루 동안 번들을 13번 다시 만든 실기기 대응 기록. 틀린 성능 계측, 평균이 못 보는 반복 자국, 추정값으로 내린 「불가능」 판정, 발열을 만든 렌더 루프를 다룬다."
 date: 2026-08-27 11:30:00 +0900
 project: night-pod
 tags: [mobile, testing, performance, build-in-public]

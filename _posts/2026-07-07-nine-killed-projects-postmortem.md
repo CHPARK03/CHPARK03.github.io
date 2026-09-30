@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "프로젝트 9개 실패의 교훈"
+description: "앱 9개를 만들고 9개를 전부 접은 회고. 기술로 실패한 것은 하나도 없고 전부 제품으로 실패했다. 가짜 보상, 확인하지 않은 외부 API, 닫힌 유통 채널에서 코드 전에 답할 체크리스트를 뽑았다."
 date: 2026-07-07
 project: nine-postmortem
 pinned: true

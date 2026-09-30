@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "'유출은 있다'고 가정하는 게시 파이프라인"
+description: "build-in-public을 하면서 기밀이 글에 딸려 나가지 않게 만든 게시 파이프라인. 에이전트가 넉넉하게 초안을 뽑으면 사람이 고르고, 읽기 전용 감사 에이전트가 「유출은 있다」고 가정한 채 반박 검사를 한다."
 date: 2026-07-06
 tags: [claude-code, agents, build-in-public, devlog]
 ---

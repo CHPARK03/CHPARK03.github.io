@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "'완료했습니다'를 못 믿어서 만든 오케스트레이션"
+description: "에이전트의 「완료했습니다」를 검증 없이 믿지 않으려고 만든 Claude Code 오케스트레이션 AgentRoom. dev는 스스로 완료를 선언할 수 없고, 읽기 전용 qa가 실제 파일로 판정하며, 되돌리기 어려운 일은 사람에게 묻는다."
 date: 2026-07-05
 project: agentroom
 tags: [claude-code, agents, agentroom, build-in-public]

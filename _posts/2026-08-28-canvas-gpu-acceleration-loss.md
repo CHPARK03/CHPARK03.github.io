@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "뭉치뭉치 - 캔버스 GPU 가속 상실"
+description: "전면 광고를 본 뒤 게임이 느려지던 결함의 원인은 광고가 아니라 캔버스 크기 재할당이었다. 같은 값을 대입해도 GPU 가속이 풀리는 동작을 실측으로 확정하고, 계측이 네 번 틀린 과정까지 남겼다."
 date: 2026-08-28 01:00:00 +0900
 project: moongchi
 tags: [performance, canvas, mobile, build-in-public]

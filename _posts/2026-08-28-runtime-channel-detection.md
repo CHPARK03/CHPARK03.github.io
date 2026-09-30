@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "뭉치뭉치 - 런타임 채널 판정"
+description: "하나의 코드베이스가 웹·미니앱·안드로이드 중 어디서 도는지 런타임에 판정하는 구조와, 거기서 나온 결함들. 전역 존재 검사의 함정, 분기를 추가할 때 봐야 할 세 곳, 인증 4겹 장애."
 date: 2026-08-28 01:30:00 +0900
 project: moongchi
 tags: [architecture, mobile, firebase, build-in-public]
