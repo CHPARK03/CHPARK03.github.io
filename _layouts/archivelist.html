@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% assign archived = site.projects | where_exp: "p", "p.archived == true" | sort: 'closed' | reverse %}
+<section class="block logpage"><div class="wrap">
+  <div class="head">
+    <h2>{{ page.title }}</h2>
+    <span class="head-note">총 {{ archived | size }}건</span>
+  </div>
+  {% if page.intro %}<p class="logpage-intro">{{ page.intro }}</p>{% endif %}
+  <ul class="work">
+    {% for p in archived %}{% include work-item.html p=p %}{% endfor %}
+  </ul>
+</div></section>

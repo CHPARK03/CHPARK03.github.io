@@ -2,6 +2,7 @@
 layout: post
 title: "뭉치뭉치 - 실시간 대전 동기화"
 date: 2026-08-28 02:00:00 +0900
+project: moongchi
 tags: [game-dev, multiplayer, architecture, build-in-public]
 ---
 

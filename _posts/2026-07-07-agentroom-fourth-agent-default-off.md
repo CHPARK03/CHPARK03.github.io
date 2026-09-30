@@ -2,6 +2,7 @@
 layout: post
 title: "네 번째 에이전트 - researcher"
 date: 2026-07-07
+project: agentroom
 tags: [claude-code, agents, agentroom, build-in-public]
 ---
 

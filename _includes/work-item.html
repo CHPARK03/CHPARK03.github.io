@@ -1,0 +1,10 @@
+{%- comment -%} 프로젝트 목록 한 행 — 대표작(홈)·아카이브(홈/전체 페이지) 공용. 호출: include work-item.html p=프로젝트 {%- endcomment -%}
+{%- assign p = include.p -%}
+<li{% if p.archived %} class="archived"{% endif %}>
+  <a class="work-main" href="{{ p.url | relative_url }}">
+    <span class="wt">{{ p.title }}</span>
+    <span class="stamp {% if p.status contains 'LIVE' %}live{% elsif p.status contains 'WIP' %}wip{% elsif p.status contains 'CLOSED' %}closed{% else %}open{% endif %}">{{ p.status }}</span>
+    <span class="wd">{{ p.blurb }}</span>
+  </a>
+  {%- unless p.archived -%}{% include play-buttons.html p=p %}{%- endunless -%}
+</li>

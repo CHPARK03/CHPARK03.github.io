@@ -2,6 +2,7 @@
 layout: post
 title: "밤샘팟 - 실기기 13차"
 date: 2026-08-27 11:30:00 +0900
+project: night-pod
 tags: [mobile, testing, performance, build-in-public]
 ---
 

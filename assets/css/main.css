@@ -98,15 +98,25 @@ section.block{ padding:3.6rem 0; border-bottom:1px solid var(--rule); }
 ul.work{ list-style:none; margin:0; padding:0; }
 ul.work li{ border-top:1px solid var(--rule); }
 ul.work li:first-child{ border-top:none; }
-ul.work li a{ display:grid; grid-template-columns:1fr auto; gap:.45rem 1rem; align-items:start;
+ul.work li a.work-main{ display:grid; grid-template-columns:1fr auto; gap:.45rem 1rem; align-items:start;
   text-decoration:none; padding:1.2rem .6rem; margin:0 -.6rem;
   border-radius:4px; transition:background .18s ease; }
-ul.work li a:hover{ background:var(--paper-raise); }
-ul.work li a:hover .wt{ color:var(--seal); }
+ul.work li a.work-main:hover{ background:var(--paper-raise); }
+ul.work li a.work-main:hover .wt{ color:var(--seal); }
 .wt{ font-family:var(--f-serif); font-size:1.22rem; font-weight:600; letter-spacing:-0.01em;
   grid-column:1; min-width:0; transition:color .18s; }
 .wd{ grid-column:1; min-width:0; color:var(--faint); font-size:.95rem; }
-ul.work li a .stamp{ grid-column:2; grid-row:1; align-self:center; }
+ul.work li a.work-main .stamp{ grid-column:2; grid-row:1; align-self:center; }
+/* 대표작 행 아래 플레이 버튼 줄 (게임만) */
+ul.work li .play-row{ margin:-.3rem 0 1.2rem; }
+/* 아카이브 행 — 운영 종료: 한 톤 낮춘다 */
+ul.work li.archived .wt{ color:var(--ink-soft); }
+ul.work li.archived a.work-main:hover .wt{ color:var(--seal); }
+
+/* 플레이 버튼 줄 — 대표작·케이스 스터디·글 하단 카드 공용 */
+.play-row{ display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; }
+.play-row .btn{ font-size:.88rem; padding:.55em 1.05em; }
+.play-note{ font-size:.82rem; color:var(--faint); }
 
 /* dev log — 번호 붙은 기록부 */
 ul.log{ list-style:none; margin:0; padding:0; }
@@ -144,6 +154,10 @@ ul.log li.pinned .lt{ color:var(--ink); }
 .case .step p{ margin:0; color:var(--ink-soft); }
 .case .case-cta{ margin-top:2rem; }
 .case .case-body{ margin-top:2.5rem; }
+.case .play-row{ margin:0 0 .6rem; }
+.archived-note{ margin:0 0 .6rem; padding:.9rem 1.1rem; background:var(--paper-sink); border:1px solid var(--rule);
+  border-radius:4px; font-size:.92rem; color:var(--ink-soft); }
+.archived-note a{ color:var(--seal); text-decoration:none; white-space:nowrap; }
 
 /* ── reading (post / page) ───────────────────────── */
 .reading{ padding:4rem 0; }
@@ -152,6 +166,55 @@ ul.log li.pinned .lt{ color:var(--ink); }
 .reading h1{ font-family:var(--f-serif); font-size:clamp(1.75rem,4vw,2.35rem); line-height:1.32;
   letter-spacing:-0.015em; max-width:24ch; margin:0 0 1.5rem; text-wrap:balance; }
 .rulebar{ border-top:3px double var(--rule-strong); margin:0 0 2.2rem; }
+
+/* 한/영 전환 — JS가 켜질 때만 보인다(없으면 두 언어가 위아래로 이어져 그대로 읽힌다) */
+.lang-switch{ display:inline-flex; border:1px solid var(--rule-strong); border-radius:3px; overflow:hidden; margin:0 0 1.8rem; }
+.lang-switch[hidden]{ display:none; }
+.lang-switch button{ font:inherit; font-size:.82rem; background:transparent; color:var(--ink-soft);
+  border:none; padding:.45em 1em; cursor:pointer; touch-action:manipulation; }
+.lang-switch button + button{ border-left:1px solid var(--rule-strong); }
+.lang-switch button[aria-pressed="true"]{ background:var(--ink); color:var(--paper); }
+.lang-switch button:focus-visible{ outline:2px solid var(--seal); outline-offset:-2px; }
+[data-pane][hidden]{ display:none; }
+.en-head{ margin-top:0 !important; }
+
+/* 요약 박스 (머리말 summary가 있을 때) */
+.summary{ margin:0 0 1.8rem; padding:1rem 1.2rem; background:var(--paper-raise); border:1px solid var(--rule);
+  border-left:3px solid var(--seal); border-radius:4px; }
+.summary-k,.toc-k{ display:block; font-family:var(--f-mono); font-size:.7rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--seal); margin-bottom:.4rem; }
+.summary p{ margin:0; color:var(--ink); }
+
+/* 목차 — 소제목 3개 이상인 글만 */
+.toc{ margin:0 0 2.4rem; padding:1rem 1.2rem; border:1px solid var(--rule); border-radius:4px; background:var(--paper-raise); }
+.toc ul{ margin:0; padding:0; list-style:none; }
+.toc li{ margin:.25rem 0; font-size:.93rem; }
+.toc li{ padding-left:.9rem; position:relative; }
+.toc li::before{ content:"·"; position:absolute; left:0; color:var(--faint); }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--seal); }
+
+/* 글 하단 — 이 글의 프로젝트 카드 */
+.post-project{ margin:3.2rem 0 0; padding:1.4rem 1.4rem 1.3rem; border:1px solid var(--rule-strong);
+  border-radius:6px; background:var(--paper-raise); }
+.post-project .eyebrow{ display:block; margin-bottom:.7rem; }
+.pp-top{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.4rem; }
+.pp-title{ font-family:var(--f-serif); font-size:1.25rem; font-weight:600; text-decoration:none; }
+.pp-title:hover{ color:var(--seal); }
+.pp-blurb{ margin:0 0 1rem; color:var(--ink-soft); font-size:.95rem; }
+.pp-note{ margin:0 0 .8rem; color:var(--faint); font-size:.9rem; }
+.post-project .play-row{ margin-bottom:.9rem; }
+.pp-more{ font-family:var(--f-mono); font-size:.75rem; letter-spacing:.06em; color:var(--faint); text-decoration:none; }
+.pp-more:hover{ color:var(--seal); }
+
+/* 이전·다음 기록 */
+.post-nav{ display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin:2.4rem 0 0; padding-top:1.4rem;
+  border-top:3px double var(--rule-strong); }
+.post-nav a{ display:block; text-decoration:none; padding:.5rem 0; }
+.post-nav .next{ text-align:right; }
+.pn-k{ display:block; font-family:var(--f-mono); font-size:.7rem; letter-spacing:.08em; color:var(--faint); margin-bottom:.2rem; }
+.pn-t{ display:block; font-size:.95rem; color:var(--ink-soft); }
+.post-nav a:hover .pn-t{ color:var(--seal); }
 
 /* prose — markdown 본문 */
 .prose h2{ font-family:var(--f-serif); font-size:1.35rem; font-weight:600; letter-spacing:-0.01em;
@@ -196,6 +259,11 @@ a:focus-visible,.btn:focus-visible{ outline:2px solid var(--seal); outline-offse
   ul.log .no{ width:auto; }
   ul.log .date{ width:auto; }
   ul.log .lt{ flex-basis:100%; }
+  nav.top{ gap:.9rem; }
+  nav.top a{ font-size:.82rem; }
+  .mark .mk{ display:none; }
+  .post-nav{ grid-template-columns:1fr; }
+  .post-nav .next{ text-align:left; }
 }
 @media (prefers-reduced-motion:reduce){
   html{ scroll-behavior:auto; }

@@ -2,6 +2,7 @@
 layout: post
 title: "밤샘팟 - 되돌릴 수 없는 것들"
 date: 2026-08-27 12:00:00 +0900
+project: night-pod
 tags: [release, process, mobile, build-in-public]
 ---
 

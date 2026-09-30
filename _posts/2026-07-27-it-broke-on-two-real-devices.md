@@ -2,6 +2,7 @@
 layout: post
 title: "실기기 검증 포스트모템"
 date: 2026-07-27 11:00:00 +0900
+project: moongchi
 tags: [game-dev, multiplayer, mobile, build-in-public]
 ---
 

@@ -16,14 +16,8 @@ layout: default
 <section class="block" id="work"><div class="wrap">
   <div class="head"><h2>대표작 / Selected Work</h2></div>
   <ul class="work">
-    {% assign projects = site.projects | where_exp: "p", "p.listed != false" | sort: 'order' %}
-    {% for p in projects %}
-    <li><a href="{{ p.url | relative_url }}">
-      <span class="wt">{{ p.title }}</span>
-      <span class="stamp {% if p.status contains 'LIVE' %}live{% elsif p.status contains 'WIP' %}wip{% elsif p.status contains 'CLOSED' %}closed{% else %}open{% endif %}">{{ p.status }}</span>
-      <span class="wd">{{ p.blurb }}</span>
-    </a></li>
-    {% endfor %}
+    {% assign projects = site.projects | where_exp: "p", "p.archived != true" | sort: 'order' %}
+    {% for p in projects %}{% include work-item.html p=p %}{% endfor %}
   </ul>
 </div></section>
 
@@ -38,5 +32,17 @@ layout: default
     {% assign feed = pinned | concat: rest %}
     {% assign feed = feed | slice: 0, 3 %}
     {% for post in feed %}{% include log-item.html post=post %}{% endfor %}
+  </ul>
+</div></section>
+
+<section class="block" id="archive"><div class="wrap">
+  <div class="head">
+    <h2>Archive / 지난 프로젝트</h2>
+    <a class="head-more" href="{{ '/archive/' | relative_url }}">전체 보기 <span aria-hidden="true">→</span></a>
+  </div>
+  <ul class="work">
+    {% assign archived = site.projects | where_exp: "p", "p.archived == true" | sort: 'closed' | reverse %}
+    {% assign archived = archived | slice: 0, 3 %}
+    {% for p in archived %}{% include work-item.html p=p %}{% endfor %}
   </ul>
 </div></section>

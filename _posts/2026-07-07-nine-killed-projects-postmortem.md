@@ -2,8 +2,9 @@
 layout: post
 title: "프로젝트 9개 실패의 교훈"
 date: 2026-07-07
+project: nine-postmortem
 pinned: true
-tags: [build-in-public, postmortem, product, solo-dev]
+tags: [build-in-public, postmortem, product, indie-dev]
 ---
 
 *🇬🇧 [English version below](#english-version)*
@@ -71,7 +72,7 @@ FitQuest는 10,150줄에 파일 78개짜리 운동 RPG였다. 완성됐고, 동�
 세 프로젝트는 문제가 진짜였지만 **너무 좁았다.**
 
 - **투자감정일기** (3,661줄): 매매할 때의 감정을 기록한다. 그런데 타겟이 "주식 투자자 중에서도 감정 기록에 관심 있는 사람" = 극소수. 게다가 매매를 안 하면 열 이유가 없어 DAU에 구조적 한계가 있었고, 투자 관련이라 플랫폼 정책 리스크까지 겹쳤다.
-- **이터널리턴 전략도우미** (6,752줄): 게임 루트 편집기. 게임 패치마다 스크래핑 스크립트 30개를 다시 돌려야 했다(데이터 유지보수 부담을 과소평가했다). 게다가 dak.gg·er.op.gg 같은 팀 단위 운영 서비스와 1인 개발로 경쟁해야 했다. 게임 도구는 그 게임의 수명에 종속된다.
+- **이터널리턴 전략도우미** (6,752줄): 게임 루트 편집기. 게임 패치마다 스크래핑 스크립트 30개를 다시 돌려야 했다(데이터 유지보수 부담을 과소평가했다). 게다가 dak.gg·er.op.gg 같은 팀 단위 운영 서비스와 작은 스튜디오로 경쟁해야 했다. 게임 도구는 그 게임의 수명에 종속된다.
 - **소비투자판단기** (1,200줄): "커피값이 10년이면 1,800만 원"을 보여주는 계산기. 그 인사이트는 한 번 전달되면 끝이다. 매일 바뀌는 변수가 없으니 재방문이 없다. **인사이트 전달은 콘텐츠(영상·블로그)로 충분하다. 앱은 반복 도구여야 한다.**
 
 ## 여기서 나온 체크리스트 — 코드 한 줄 전에
@@ -166,7 +167,7 @@ Lesson: **open the distribution channel before you build.** With the channel loc
 Three projects had real problems, but the audience was **too narrow.**
 
 - **Investment Emotion Diary** (3,661 lines): log your emotions when you trade. But the target — "stock investors who also care about logging emotions" — is a tiny sliver. You have no reason to open it unless you're trading, which caps DAU structurally, and being investment-adjacent added platform-policy risk.
-- **Eternal Return Strategy Helper** (6,752 lines): a game-route editor. Every game patch meant re-running 30 scraping scripts — I underestimated the data-maintenance cost — and I'd be competing as a solo dev against team-run services like dak.gg and er.op.gg. A game tool is bound to that game's lifespan.
+- **Eternal Return Strategy Helper** (6,752 lines): a game-route editor. Every game patch meant re-running 30 scraping scripts — I underestimated the data-maintenance cost — and I'd be competing as a small studio against team-run services like dak.gg and er.op.gg. A game tool is bound to that game's lifespan.
 - **Spend-vs-Invest Judge** (1,200 lines): a calculator showing "your coffee money over 10 years → $13K." That insight lands once and it's over. No daily-changing variable means no return visits. **Insight delivery belongs in content (video, blog). An app has to be a repeat tool.**
 
 ### The checklist that came out of it — before the first line

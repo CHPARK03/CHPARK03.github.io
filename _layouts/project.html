@@ -3,13 +3,18 @@ layout: default
 ---
 <article class="case"><div class="wrap"><div class="cs">
   <div class="case-top">
-    <span class="eyebrow">Case study — {{ page.title }}</span>
-    <span class="stamp lg {% if page.status contains 'LIVE' %}live{% elsif page.status contains 'WIP' %}wip{% else %}open{% endif %}">{{ page.status }}</span>
+    <span class="eyebrow">{% if page.archived %}Archive{% else %}Case study{% endif %} — {{ page.title }}</span>
+    <span class="stamp lg {% if page.status contains 'LIVE' %}live{% elsif page.status contains 'WIP' %}wip{% elsif page.status contains 'CLOSED' %}closed{% else %}open{% endif %}">{{ page.status }}</span>
   </div>
   <h1>{{ page.headline }}</h1>
   <div class="meta">
     {% for m in page.meta %}<span class="chip">{{ m }}</span>{% endfor %}
   </div>
+  {% if page.archived %}
+  <p class="archived-note">운영을 마친 프로젝트입니다{% if page.closed %} ({{ page.closed | date: "%Y.%m.%d" }}){% endif %}. 만든 과정과 접은 이유를 기록으로 남겨 둡니다. <a href="{{ '/archive/' | relative_url }}">Archive 전체 보기 →</a></p>
+  {% else %}
+  {% include play-buttons.html p=page %}
+  {% endif %}
   {% for s in page.steps %}
   <div class="step"><span class="k">{{ s.k }}</span><h3>{{ s.h }}</h3><p>{{ s.p }}</p></div>
   {% endfor %}

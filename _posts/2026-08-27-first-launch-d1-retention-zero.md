@@ -2,6 +2,7 @@
 layout: post
 title: "수분 코치 - 첫 출시작의 D1 리텐션 0"
 date: 2026-08-27
+project: hydro-coach
 tags: [build-in-public, postmortem, product, apps-in-toss, public-api]
 ---
 

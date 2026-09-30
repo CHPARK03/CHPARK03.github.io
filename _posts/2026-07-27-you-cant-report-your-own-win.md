@@ -2,12 +2,13 @@
 layout: post
 title: "클라이언트를 믿지 않는 대전 설계"
 date: 2026-07-27 10:00:00 +0900
+project: moongchi
 tags: [game-dev, multiplayer, firebase, build-in-public]
 ---
 
 *🇬🇧 [English version below](#english-version)*
 
-혼자 만드는 퍼즐 게임에 1대1 대전을 붙였다. 처음 상대는 봇이었다. 봇전은 크게 어렵지 않았다. 상대의 모든 것이 내 기기 안에서 돌아가니까, 누가 이겼는지도 결국 내 코드가 알고 있었다.
+직접 만드는 퍼즐 게임에 1대1 대전을 붙였다. 처음 상대는 봇이었다. 봇전은 크게 어렵지 않았다. 상대의 모든 것이 내 기기 안에서 돌아가니까, 누가 이겼는지도 결국 내 코드가 알고 있었다.
 
 사람 대 사람으로 넘어가는 순간 그 전제가 통째로 무너졌다. 이제 상대는 남의 폰에서 돌아가고, 그 폰이 뭐라고 말하든 나는 그걸 확인할 방법이 없다. 지난 3주는 대부분 이 한 문장을 감당하는 일이었다.
 
@@ -65,7 +66,7 @@ tags: [game-dev, multiplayer, firebase, build-in-public]
 
 전에 내 에이전트 도구를 만들면서 "주장을 믿지 말고 상태를 검증하라"를 원칙으로 삼았는데, 대전을 붙이면서 그 문장을 다시 만났다. 상대가 뭐라고 말하든, 끝나고 남는 건 서버에 원자적으로 기록된 것뿐이다.
 
-혼자 만들면 서버 팀도 없고 매치메이커도 없다. 대신 가진 게 하나 있다. 어떤 값이 위조되면 곤란한지 처음부터 알고 있다는 것. 그 자리마다 원자적 기록을 하나씩 놓는 걸로 꽤 멀리 갈 수 있었다.
+작은 스튜디오에는 서버 팀도 없고 매치메이커도 없다. 대신 가진 게 하나 있다. 어떤 값이 위조되면 곤란한지 처음부터 알고 있다는 것. 그 자리마다 원자적 기록을 하나씩 놓는 걸로 꽤 멀리 갈 수 있었다.
 
 ---
 
@@ -129,4 +130,4 @@ All three came from the same place: what a client says is a lead, not evidence.
 
 When I built my agent tooling earlier, I landed on "don't trust claims, verify state" as a principle. Wiring up multiplayer, I ran into that sentence again. Whatever the opponent's device says, what survives is only what was atomically recorded on the server.
 
-Building solo means no backend team and no matchmaker. But it comes with one advantage: from day one you know exactly which values would hurt if forged. Putting a single atomic record at each of those spots got me surprisingly far.
+A small studio has no backend team and no matchmaker. But it comes with one advantage: from day one you know exactly which values would hurt if forged. Putting a single atomic record at each of those spots got me surprisingly far.

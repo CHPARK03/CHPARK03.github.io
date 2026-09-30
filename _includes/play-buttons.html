@@ -1,0 +1,9 @@
+{%- comment -%} 게임 플레이 버튼 줄 — 프로젝트 머리말의 play(목록)·play_note를 그린다. 호출: include play-buttons.html p=프로젝트 {%- endcomment -%}
+{%- if include.p.play and include.p.play.size > 0 -%}
+<div class="play-row">
+  {%- for l in include.p.play -%}
+  <a class="btn {% if forloop.first %}primary{% else %}ghost{% endif %} play-btn" href="{{ l.url }}" rel="noopener">{{ l.label }}</a>
+  {%- endfor -%}
+  {%- if include.p.play_note -%}<span class="play-note">{{ include.p.play_note }}</span>{%- endif -%}
+</div>
+{%- endif -%}

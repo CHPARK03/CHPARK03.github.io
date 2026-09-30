@@ -3,9 +3,115 @@ layout: default
 ---
 {% assign total = site.posts | size %}
 {% for p in site.posts %}{% if p.url == page.url %}{% assign n = total | minus: forloop.index0 %}{% endif %}{% endfor %}
+
+{%- comment -%}
+  한/영 분리 — 글 본문은 "한국어 전문 → --- → ## English version → 영어 전문" 구조(14편 공통).
+  마커가 없으면 bilingual=false 로 본문을 그대로 그린다(구조가 다른 글도 깨지지 않게).
+{%- endcomment -%}
+{%- assign en_marker = '<h2 id="english-version">English version</h2>' -%}
+{%- assign en_link = '<p><em>🇬🇧 <a href="#english-version">English version below</a></em></p>' -%}
+{%- assign parts = content | split: en_marker -%}
+{%- if parts.size > 1 -%}
+  {%- assign bilingual = true -%}
+  {%- assign ko = parts[0] | replace: en_link, '' | strip -%}
+  {%- assign tail = ko | slice: -6, 6 -%}
+  {%- if tail == '<hr />' -%}{%- assign cut = ko | size | minus: 6 -%}{%- assign ko = ko | slice: 0, cut -%}{%- endif -%}
+  {%- assign en = parts[1] -%}
+{%- else -%}
+  {%- assign bilingual = false -%}
+  {%- assign ko = content -%}
+{%- endif -%}
+{%- assign chars = ko | strip_html | size -%}
+{%- assign mins = chars | divided_by: 500 | plus: 1 -%}
+{%- assign hs = ko | split: '<h2 id="' -%}
+
 <article class="reading"><div class="wrap"><div class="body">
-  <span class="eyebrow">기록 No.{{ n | prepend: '000' | slice: -3, 3 }} — {{ page.date | date: "%Y.%m.%d" }}</span>
+  <span class="eyebrow">기록 No.{{ n | prepend: '000' | slice: -3, 3 }} — {{ page.date | date: "%Y.%m.%d" }} · 약 {{ mins }}분</span>
   <h1>{{ page.title }}</h1>
   <div class="rulebar" aria-hidden="true"></div>
-  <div class="prose">{{ content }}</div>
+
+  {% if bilingual %}
+  <div class="lang-switch" role="group" aria-label="언어 선택" hidden>
+    <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
+    <button type="button" data-lang="en" aria-pressed="false">English</button>
+  </div>
+  {% endif %}
+
+  <div data-pane="ko" lang="ko">
+    {% if page.summary %}
+    <div class="summary"><span class="summary-k">요약</span><p>{{ page.summary }}</p></div>
+    {% endif %}
+    {% if hs.size > 3 %}
+    <nav class="toc" aria-label="이 글의 구성">
+      <span class="toc-k">이 글의 구성</span>
+      <ul>
+        {% for h in hs offset:1 %}
+        {%- assign hid = h | split: '"' | first -%}
+        {%- assign htxt = h | split: '</h2>' | first | remove_first: hid | remove_first: '">' | strip_html | strip -%}
+        <li><a href="#{{ hid }}">{{ htxt }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+    <div class="prose">{{ ko }}</div>
+  </div>
+
+  {% if bilingual %}
+  <div data-pane="en" lang="en" id="english-version">
+    <div class="prose"><h2 class="en-head">English version</h2>{{ en }}</div>
+  </div>
+  {% endif %}
+
+  {%- if page.project -%}
+  {%- for p in site.projects -%}
+  {%- assign slug = p.url | split: '/' | last -%}
+  {%- if slug == page.project -%}
+  <aside class="post-project" aria-label="이 글의 프로젝트">
+    <span class="eyebrow">이 글의 프로젝트</span>
+    <div class="pp-top">
+      <a class="pp-title" href="{{ p.url | relative_url }}">{{ p.title }}</a>
+      <span class="stamp {% if p.status contains 'LIVE' %}live{% elsif p.status contains 'WIP' %}wip{% elsif p.status contains 'CLOSED' %}closed{% else %}open{% endif %}">{{ p.status }}</span>
+    </div>
+    <p class="pp-blurb">{{ p.blurb }}</p>
+    {% if p.archived %}<p class="pp-note">운영을 마친 프로젝트입니다. 기록은 Archive에 남겨 두었습니다.</p>{% else %}{% include play-buttons.html p=p %}{% endif %}
+    <a class="pp-more" href="{{ p.url | relative_url }}">{% if p.archived %}프로젝트 기록 보기{% else %}케이스 스터디 보기{% endif %} <span aria-hidden="true">→</span></a>
+  </aside>
+  {%- endif -%}
+  {%- endfor -%}
+  {%- endif -%}
+
+  <nav class="post-nav" aria-label="이전·다음 기록">
+    {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}"><span class="pn-k">← 이전 기록</span><span class="pn-t">{{ page.previous.title }}</span></a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}"><span class="pn-k">다음 기록 →</span><span class="pn-t">{{ page.next.title }}</span></a>{% endif %}
+  </nav>
 </div></div></article>
+
+{% if bilingual %}
+<script>
+(function () {
+  var root = document.querySelector('.reading');
+  var sw = root && root.querySelector('.lang-switch');
+  if (!sw) return;
+  var panes = root.querySelectorAll('[data-pane]');
+  var btns = sw.querySelectorAll('button');
+  function set(lang) {
+    for (var i = 0; i < panes.length; i++) panes[i].hidden = panes[i].getAttribute('data-pane') !== lang;
+    for (var j = 0; j < btns.length; j++) btns[j].setAttribute('aria-pressed', String(btns[j].getAttribute('data-lang') === lang));
+  }
+  function fromHash() {
+    var id = location.hash ? decodeURIComponent(location.hash.slice(1)) : '';
+    var t = id && document.getElementById(id);
+    set(t && t.closest('[data-pane="en"]') ? 'en' : 'ko');
+    if (t) t.scrollIntoView();
+  }
+  for (var k = 0; k < btns.length; k++) btns[k].addEventListener('click', function () {
+    var lang = this.getAttribute('data-lang');
+    set(lang);
+    history.replaceState(null, '', lang === 'en' ? '#english-version' : location.pathname);
+  });
+  sw.hidden = false;
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+})();
+</script>
+{% endif %}

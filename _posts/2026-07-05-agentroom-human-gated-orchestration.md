@@ -2,12 +2,13 @@
 layout: post
 title: "'완료했습니다'를 못 믿어서 만든 오케스트레이션"
 date: 2026-07-05
+project: agentroom
 tags: [claude-code, agents, agentroom, build-in-public]
 ---
 
 *🇬🇧 [English version below](#english-version)*
 
-나는 모든 걸 혼자 만든다. 내 컴퓨터에서만 도는 로컬 LLM 개인 에이전트, 그리고 1인 운영을 지탱하는 온갖 도구들.
+나는 많은 걸 직접 만든다. 내 컴퓨터에서만 도는 로컬 LLM 개인 에이전트, 그리고 스튜디오 운영을 지탱하는 온갖 도구들.
 
 한동안은 AI 에이전트 "팀"을 손으로 굴렸다. 총괄 세션 하나, 개발 세션 하나, 검수 세션 하나. Claude Code 세션을 여러 개 띄워놓고 한쪽의 결과물과 계획서를 복사해 다른 쪽에 붙여넣으며 지시를 날랐다. 역할을 나누니 품질은 확실히 좋아졌다. 문제는 내가 하루 종일 에이전트 사이를 오가며 말을 나르는 심부름꾼이 됐다는 거다.
 
@@ -55,7 +56,7 @@ tags: [claude-code, agents, agentroom, build-in-public]
 
 ## English version
 
-I build everything solo: a local-LLM personal agent, and all the tooling that keeps a one-person operation alive.
+I build a lot of things myself: a local-LLM personal agent, and all the tooling that keeps the studio running.
 
 For a while, I ran my AI agent "team" by hand. One Claude Code session played the director, another the developer, another the reviewer — and I was the messenger between them, copying results and plans out of one session and pasting them into the next, relaying instructions all day. The role separation genuinely improved quality. It also turned me into a carrier pigeon.
 

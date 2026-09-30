@@ -2,6 +2,7 @@
 layout: post
 title: "밤샘팟 - 그림에 없는 관절"
 date: 2026-08-27 11:00:00 +0900
+project: night-pod
 tags: [webgl, animation, mobile, build-in-public]
 ---
 
